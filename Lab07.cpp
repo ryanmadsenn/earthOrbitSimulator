@@ -115,10 +115,10 @@ void callBack(const Interface* pUI, void* p)
     pDemo->gpsTrail.push_back(prev);
 
     // rotate the earth
-    double multiplier = 0.5;
+//    double multiplier = 0.5;
 
-    pDemo->angleEarth -= 0.00349 * multiplier;
-    pDemo->angleShip -= 0.00349 * multiplier;
+    pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
+    pDemo->angleShip += 0.01;
     pDemo->phaseStar++;
 
     // Move the GPS.
@@ -133,7 +133,7 @@ void callBack(const Interface* pUI, void* p)
     double accX = accGrav * sin(direction);
     double accY = accGrav * cos(direction);
 
-    double time = 48 * multiplier;
+    double time = 24;
 
     double prevDX = pDemo->gpsDX;
     double prevDY = pDemo->gpsDY;

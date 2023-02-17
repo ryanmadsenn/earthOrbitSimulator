@@ -115,7 +115,7 @@ void callBack(const Interface* pUI, void* p)
     pDemo->gpsTrail.push_back(prev);
 
     // rotate the earth
-    double multiplier = 10;
+    double multiplier = 0.5;
 
     pDemo->angleEarth -= 0.00349 * multiplier;
     pDemo->angleShip -= 0.00349 * multiplier;

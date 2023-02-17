@@ -114,12 +114,12 @@ void callBack(const Interface* pUI, void* p)
    Position prev = pDemo->ptGPS;
     pDemo->gpsTrail.push_back(prev);
 
-   // rotate the earth
-   double multiplier = 1.0;
+    // rotate the earth
+    double multiplier = 10;
 
-   pDemo->angleEarth -= 0.00349 * multiplier;
-   pDemo->angleShip -= 0.00349 * multiplier;
-   pDemo->phaseStar++;
+    pDemo->angleEarth -= 0.00349 * multiplier;
+    pDemo->angleShip -= 0.00349 * multiplier;
+    pDemo->phaseStar++;
 
     // Move the GPS.
     double satX = pDemo->ptGPS.getMetersX();
@@ -135,18 +135,23 @@ void callBack(const Interface* pUI, void* p)
 
     double time = 48 * multiplier;
 
-    pDemo->ptGPS.setMetersX(pDemo->ptGPS.getMetersX() + pDemo->gpsDX * time + 0.5 * accX * pow(time, 2));
-    pDemo->ptGPS.setMetersY(pDemo->ptGPS.getMetersY() + pDemo->gpsDY * time + 0.5 * accY * pow(time, 2));
-
-//    cout << pDemo->gpsDY << "\n";
-    double netVelocity = sqrt(pow(pDemo->gpsDX, 2) + pow(pDemo->gpsDY, 2));
-
-//    cout << setprecision(2);
-//    cout << fixed;
-//    cout << netVelocity << "," << pDemo->gpsDX << "," << pDemo->gpsDY << "\n";
-
+    double prevDX = pDemo->gpsDX;
+    double prevDY = pDemo->gpsDY;
     pDemo->gpsDX = pDemo->gpsDX + accX * time;
     pDemo->gpsDY = pDemo->gpsDY + accY * time;
+
+    double xFromPrev = pDemo->ptGPS.getMetersX() + prevDX * time + 0.5 * accX * pow(time, 2);
+    double yFromPrev = pDemo->ptGPS.getMetersY() + prevDY * time + 0.5 * accY * pow(time, 2);
+    double xFromCurr = pDemo->ptGPS.getMetersX() + pDemo->gpsDX * time + 0.5 * accX * pow(time, 2);
+    double yFromCurr = pDemo->ptGPS.getMetersY() + pDemo->gpsDY * time + 0.5 * accY * pow(time, 2);
+
+    double xBetween = (xFromPrev + xFromCurr) / 2;
+    double yBetween = (yFromPrev + yFromCurr) / 2;
+
+    pDemo->ptGPS.setMetersX(xBetween);
+    pDemo->ptGPS.setMetersY(yBetween);
+
+
 
 
 
@@ -224,6 +229,7 @@ int main(int argc, char** argv)
    Interface ui(0, NULL,
       "Demo",   /* name on the window */
       ptUpperRight);
+   ui.setFramesPerSecond(60);
 
    // Initialize the demo
    Demo demo(ptUpperRight);

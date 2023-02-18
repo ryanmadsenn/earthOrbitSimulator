@@ -11,6 +11,8 @@
  *      ??
  *****************************************************************/
 
+#define _USE_MATH_DEFINES
+
 #include <cassert>      // for ASSERT
 #include <cmath>        // for M_PI
 #include <iomanip>

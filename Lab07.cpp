@@ -6,9 +6,13 @@
  * 3. Assignment Description:
  *      Simulate satellites orbiting the earth
  * 4. What was the hardest part? Be as specific as possible.
- *      ??
+ *      The hardest part was figuring out how to keep the satellite
+ *      from drifting away from the Earth. We ended up calculating
+ *      the new position of the satellite with the both the previous
+ *      and new velocities, and then averaged those two points to
+ *      get a more accurate new position.
  * 5. How long did it take for you to complete the assignment?
- *      ??
+ *      It took about 4 hours ot complete this assignment.
  *****************************************************************/
 
 #define _USE_MATH_DEFINES

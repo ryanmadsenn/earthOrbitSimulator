@@ -48,14 +48,21 @@ public:
       ptGPS.setMetersX(0);
       ptGPS.setMetersY(42164000);
 
-      ptStar.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
-      ptStar.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+      for (int i = 0; i < 200; i++)
+      {
+         Position pt;
+         pt.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
+         pt.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
+
+         // Random phase.
+         unsigned char phase = random(0, 224);
+
+         stars.push_back(make_pair(pt, phase));
+      }
 
       angleShip = M_PI / 2.0;
       angleEarth = 0.0;
-      phaseStar = 0;
       gpsDX = -3100;
-//      gpsDX = 0;
       gpsDY = 0;
    }
 
@@ -65,15 +72,12 @@ public:
 //   Position ptCrewDragon;
 //   Position ptShip;
    Position ptGPS;
-   Position ptStar;
    Position ptUpperRight;
 
-   vector<Position> gpsTrail;
+   vector<pair<Position, unsigned char>> stars;
 
    double gpsDX;
    double gpsDY;
-
-   unsigned char phaseStar;
 
    double angleShip;
    double angleEarth;
@@ -111,15 +115,11 @@ void callBack(const Interface* pUI, void* p)
    // perform all the game logic
    //
 
-   Position prev = pDemo->ptGPS;
-    pDemo->gpsTrail.push_back(prev);
-
     // rotate the earth
 //    double multiplier = 0.5;
 
     pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
     pDemo->angleShip += 0.01;
-    pDemo->phaseStar++;
 
     // Move the GPS.
     double satX = pDemo->ptGPS.getMetersX();
@@ -150,9 +150,6 @@ void callBack(const Interface* pUI, void* p)
 
     pDemo->ptGPS.setMetersX(xBetween);
     pDemo->ptGPS.setMetersY(yBetween);
-
-
-
 
 
    //
@@ -194,10 +191,11 @@ void callBack(const Interface* pUI, void* p)
    // draw a single star
 //   drawStar(pDemo->ptStar, pDemo->phaseStar);
 
-    // draw the trail
-    for (int i = 0; i < pDemo->gpsTrail.size(); i++)
+    // draw the stars
+    for (auto it = pDemo->stars.begin(); it != pDemo->stars.end(); ++it)
     {
-        drawStar(pDemo->gpsTrail[i], 0);
+        drawStar(it->first, it->second);
+        it->second++;
     }
 
    // draw the earth

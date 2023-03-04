@@ -3,7 +3,7 @@
 #pragma once
 
 #include "physics.h"
-#include <cassert>
+#include "dummyPosition.h"
 
 class TestPhysics 
 {
@@ -15,11 +15,14 @@ public:
 		testComputeTimePerFrame();
 		testComputeRotationSpeed();
 		testComputeSecPerDay();
-		testComputeSatHeight();
-		testComputeAcceDueGravity();
-		testComputeGravityPullDirection();
-		testComputeDistance();
-		testUpdatePosition();
+		testAccCloseAboveEarth();
+		testAccCloseBelowEarth();
+		testAccCloseLeftEarth();
+		testAccCloseRightEarth();
+		testAccTwiceAboveEarth();
+		testAccTwiceBelowEarth();
+		testAccTwiceLeftEarth();
+		testAccTwiceRightEarth();
 	}
 
 private:
@@ -107,73 +110,123 @@ private:
 		// TEARDOWN
 	}
 
-	void testComputeSatHeight()
+	void testAccCloseAboveEarth()
 	{
-		// SETUP
+		// setup
+		DummyPosition p(0, 6378000 + 1);
 
+		// exercise
+		g = getGravity(p);
 
-		// EXERCISE
+		// verify
+		g.acceleration = 9.806;
+		g.direction = 3.14;
 
-
-		// VERIFY
-
-
-		// TEARDOWN
+		// teardown
 	}
 
-	void testComputeAcceDueGravity()
+	void testAccCloseBelowEarth()
 	{
-		// SETUP
+		// setup
+		DummyPosition p(0, -6378000 + 1);
 
+		// exercise
+		g = getGravity(p);
 
-		// EXERCISE
+		// verify
+		g.acceleration = 9.806;
+		g.direction = 0;
 
-
-		// VERIFY
-
-
-		// TEARDOWN
+		// teardown
 	}
 
-	void testComputeGravityPullDirection()
+	void testAccCloseLeftEarth()
 	{
-		// SETUP
+		// setup
+		DummyPosition p(-6378000 - 1, 0);
 
+		// exercise
+		g = getGravity(p);
 
-		// EXERCISE
+		// verify
+		g.acceleration = 9.806;
+		g.direction = 1.57;
 
-
-		// VERIFY
-
-
-		// TEARDOWN
+		// teardown
 	}
 
-	void testComputeDistance()
+	void testAccCloseRightEarth()
 	{
-		// SETUP
+		// setup
+		DummyPosition p(6378000 + 1, 0);
 
+		// exercise
+		g = getGravity(p);
 
-		// EXERCISE
+		// verify
+		g.acceleration = 9.806;
+		g.direction = -1.57;
 
-
-		// VERIFY
-
-
-		// TEARDOWN
+		// teardown
 	}
 
-	void testUpdatePosition()
+	void testAccTwiceAboveEarth()
 	{
-		// SETUP
+		// setup
+		DummyPosition p(0, 6378000 * 2);
 
+		// exercise
+		g = getGravity(p);
 
-		// EXERCISE
+		// verify
+		g.acceleration = 2.45;
+		g.direction = 3,14;
 
+		// teardown
+	}
 
-		// VERIFY
+	void testAccTwiceBelowEarth()
+	{
+		// setup
+		DummyPosition p(0, -6378000 * 2);
 
+		// exercise
+		g = getGravity(p);
 
-		// TEARDOWN
+		// verify
+		g.acceleration = 2.45;
+		g.direction = 0;
+
+		// teardown
+	}
+
+	void testAccTwiceRightEarth()
+	{
+		// setup
+		DummyPosition p(6378000 * 2, 0);
+
+		// exercise
+		g = getGravity(p);
+
+		// verify
+		g.acceleration = 2.45;
+		g.direction = -1.57;
+
+		// teardown
+	}
+
+	void testAccTwiceLeftEarth()
+	{
+		// setup
+		DummyPosition p(-6378000 * 2, 0);
+
+		// exercise
+		g = getGravity(p);
+
+		// verify
+		g.acceleration = 2.45;
+		g.direction = 1.57;
+
+		// teardown
 	}
 };

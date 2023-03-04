@@ -10,7 +10,6 @@ class TestPhysics
 public:
 	void run()
 	{
-		testDefaultConstructor();
 		testComputeTimeDialtion();
 		testComputeTimePerFrame();
 		testComputeRotationSpeed();
@@ -26,24 +25,6 @@ public:
 	}
 
 private:
-	void testDefaultConstructor()
-	{
-		// SETUP
-
-		// EXERCISE
-		Physics physics;
-
-		// VERIFY
-		assert(physics.gravity == 9.80665);
-		assert(physics.earthRadius == 6378000);
-		assert(physics.frameRate == 30);
-		assert(physics.hoursPerDay == 24);
-		assert(physics.minutesPerHour == 60);
-		assert(physics.secondsPerMinute == 60);
-
-		// TEARDOWN
-	}
-
 	void testComputeTimeDialtion()
 	{
 		// SETUP
@@ -57,6 +38,7 @@ private:
 		assert(timeDilation > 0);
 		assert(timeDilation > physics.hoursPerDay);
 		assert(timeDilation > physics.minutesPerHour);
+		assert(timeDilation == 1440.0);
 
 		// TEARDOWN
 	}
@@ -73,6 +55,7 @@ private:
 		// VERIFY
 		assert(timePerframe > 0);
 		assert(timePerframe > physics.frameRate);
+		assert(timePerframe == 432000.0);
 
 		// TEARDOWN
 	}
@@ -88,6 +71,7 @@ private:
 
 		// VERIFY
 		assert(rotationSpeed < 0);
+		assert(rotationSpeed == -0.00349065920212);
 
 		// TEARDOWN
 	}
@@ -106,6 +90,7 @@ private:
 		assert(secPerDay > physics.minutesPerHour);
 		assert(secPerDay > physics.secondsPerMinute);
 		assert(secPerDay > physics.hoursPerDay);
+		assert(secPerDay == 86400.0);
 
 		// TEARDOWN
 	}

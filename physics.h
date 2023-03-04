@@ -48,9 +48,9 @@ public:
 
 private:
 	double gravity = 9.80665;
-	double earthRadius = 6378000;
-	double frameRate = 30;
-	double hoursPerDay = 24;
-	double minutesPerHour = 60;
-	double secondsPerMinute = 60;
+	double earthRadius = 6378000.0;
+	double frameRate = 30.0;
+	double hoursPerDay = 24.0;
+	double minutesPerHour = 60.0;
+	double secondsPerMinute = 60.0;
 };

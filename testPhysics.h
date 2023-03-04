@@ -48,7 +48,7 @@ private:
 	{
 		// SETUP
 		Physics physics;
-		double timeDilation;
+		double timeDilation;    
 
 		// EXERCISE
 		timeDilation = physics.computeTimeDilation();
@@ -112,121 +112,121 @@ private:
 
 	void testAccCloseAboveEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(0, 6378000 + 1);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 9.806;
-		g.direction = 3.14;
+		// VERIFY
+		assert(g.acceleration == 9.806);
+		assert(g.direction == 3.14);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccCloseBelowEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(0, -6378000 + 1);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 9.806;
-		g.direction = 0;
+		// VERIFY
+		assert(g.acceleration == 9.806);
+		assert(g.direction == 0);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccCloseLeftEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(-6378000 - 1, 0);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 9.806;
-		g.direction = 1.57;
+		// VERIFY
+		assert(g.acceleration == 9.806);
+		assert(g.direction == 1.57);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccCloseRightEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(6378000 + 1, 0);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 9.806;
-		g.direction = -1.57;
+		// VERIFY
+		assert(g.acceleration == 9.806);
+		assert(g.direction == -1.57);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccTwiceAboveEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(0, 6378000 * 2);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 2.45;
-		g.direction = 3,14;
+		// VERIFY
+		assert(g.acceleration = 2.45);
+		assert(g.direction = 3,14);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccTwiceBelowEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(0, -6378000 * 2);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 2.45;
-		g.direction = 0;
+		// VERIFY
+		assert(g.acceleration = 2.45);
+		assert(g.direction = 0);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccTwiceRightEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(6378000 * 2, 0);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 2.45;
-		g.direction = -1.57;
+		// VERIFY
+		assert(g.acceleration = 2.45);
+		assert(g.direction = -1.57);
 
-		// teardown
+		// TEARDOWN
 	}
 
 	void testAccTwiceLeftEarth()
 	{
-		// setup
+		// SETUP
 		DummyPosition p(-6378000 * 2, 0);
 
-		// exercise
+		// EXERCISE
 		g = getGravity(p);
 
-		// verify
-		g.acceleration = 2.45;
-		g.direction = 1.57;
+		// VERIFY
+		assert(g.acceleration = 2.45);
+		assert(g.direction = 1.57);
 
-		// teardown
+		// TEARDOWN
 	}
 };

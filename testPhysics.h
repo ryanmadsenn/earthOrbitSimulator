@@ -1,16 +1,29 @@
-
+/***********************************************************************
+* Header File:
+*    Test Physics : Test the Physics class
+* Author:
+*    Erick Vega, Ryan Madsen, Bueze Nwokolo
+* Summary:
+*    All the unit tests for Physics
+************************************************************************/
 
 #pragma once
 
 #include "physics.h"
 #include "dummyPosition.h"
+#include "direction.h"
+#include <cassert>
 
+/*******************************
+ * TEST Physics
+ * A friend class for Physics which contains the Physics unit tests
+ ********************************/
 class TestPhysics 
 {
 public:
 	void run()
 	{
-		testDefaultConstructor();
+		testDefaultVariables();
 		testComputeTimeDialtion();
 		testComputeTimePerFrame();
 		testComputeRotationSpeed();
@@ -26,37 +39,34 @@ public:
 	}
 
 private:
-	void testDefaultConstructor()
+	void testDefaultVariables()
 	{
 		// SETUP
 
-		// EXERCISE
-		Physics physics;
+		// EXERCISE		
 
 		// VERIFY
-		assert(physics.gravity == 9.80665);
-		assert(physics.earthRadius == 6378000);
-		assert(physics.frameRate == 30);
-		assert(physics.hoursPerDay == 24);
-		assert(physics.minutesPerHour == 60);
-		assert(physics.secondsPerMinute == 60);
+		assert(standardGravity == 9.80665);
+		assert(earthRadius == 6378000);
+		assert(frameRate == 30);
+		assert(hoursPerDay == 24);
+		assert(minutesPerHour == 60);
+		assert(secondsPerMinute == 60);
 
 		// TEARDOWN
 	}
 
 	void testComputeTimeDialtion()
 	{
-		// SETUP
-		Physics physics;
-		double timeDilation;    
+		// SETUP    
 
 		// EXERCISE
-		timeDilation = physics.computeTimeDilation();
+		double timeDilation = computeTimeDilation();
 
 		// VERIFY
-		assert(timeDilation > 0);
-		assert(timeDilation > physics.hoursPerDay);
-		assert(timeDilation > physics.minutesPerHour);
+		assert(hoursPerDay == 24);
+		assert(minutesPerHour == 60);
+		assert(timeDilation == 1440);
 
 		// TEARDOWN
 	}
@@ -64,15 +74,15 @@ private:
 	void testComputeTimePerFrame()
 	{
 		// SETUP
-		Physics physics;
-		double timePerframe;
 
 		// EXERCISE
-		timePerframe = physics.computeTimeDilation() * physics.frameRate;
+		double timePerframe = computeTimePerFrame();
 
 		// VERIFY
-		assert(timePerframe > 0);
-		assert(timePerframe > physics.frameRate);
+		assert(hoursPerDay == 24);
+		assert(minutesPerHour == 60);
+		assert(frameRate = 30);
+		assert(timePerframe == 43200);
 
 		// TEARDOWN
 	}
@@ -80,14 +90,17 @@ private:
 	void testComputeRotationSpeed()
 	{
 		// SETUP
-		Physics physics;
-		double rotationSpeed;
 
 		// EXERCISE
-		rotationSpeed = physics.computeRotationSpeed();
+		double rotationSpeed = computeRotationSpeed();
 
 		// VERIFY
-		assert(rotationSpeed < 0);
+		assert(frameRate = 30);
+		assert(hoursPerDay == 24);
+		assert(minutesPerHour == 60);
+		assert(frameRate = 30);
+		assert(rotationSpeed == -0.00348);
+		
 
 		// TEARDOWN
 	}
@@ -95,17 +108,15 @@ private:
 	void testComputeSecPerDay()
 	{
 		// SETUP
-		Physics physics;
-		double secPerDay;
-
+		
 		// EXERCISE
-		secPerDay = physics.computeSecPerDay();
+		double secPerDay = computeSecPerDay();
 
 		// VERIFY
-		assert(secPerDay > 0);
-		assert(secPerDay > physics.minutesPerHour);
-		assert(secPerDay > physics.secondsPerMinute);
-		assert(secPerDay > physics.hoursPerDay);
+		assert(hoursPerDay == 24);
+		assert(secondsPerMinute == 60);
+		assert(minutesPerHour == 60);
+		assert(secPerDay == 86400);
 
 		// TEARDOWN
 	}
@@ -116,11 +127,11 @@ private:
 		DummyPosition p(0, 6378000 + 1);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration == 9.806);
-		assert(g.direction == 3.14);
+		assert(g.direction.radians == 0.055);
 
 		// TEARDOWN
 	}
@@ -131,11 +142,11 @@ private:
 		DummyPosition p(0, -6378000 + 1);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration == 9.806);
-		assert(g.direction == 0);
+		assert(g.direction.radians == 0);
 
 		// TEARDOWN
 	}
@@ -146,11 +157,11 @@ private:
 		DummyPosition p(-6378000 - 1, 0);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration == 9.806);
-		assert(g.direction == 1.57);
+		assert(g.direction.radians == 1.57);
 
 		// TEARDOWN
 	}
@@ -161,11 +172,11 @@ private:
 		DummyPosition p(6378000 + 1, 0);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration == 9.806);
-		assert(g.direction == -1.57);
+		assert(g.direction.radians == -1.57);
 
 		// TEARDOWN
 	}
@@ -176,11 +187,11 @@ private:
 		DummyPosition p(0, 6378000 * 2);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
-		assert(g.acceleration = 2.45);
-		assert(g.direction = 3,14);
+		assert(g.acceleration == 2.45);
+		assert(g.direction.radians == 0.055);
 
 		// TEARDOWN
 	}
@@ -191,11 +202,11 @@ private:
 		DummyPosition p(0, -6378000 * 2);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration = 2.45);
-		assert(g.direction = 0);
+		assert(g.direction.radians = 0);
 
 		// TEARDOWN
 	}
@@ -206,11 +217,11 @@ private:
 		DummyPosition p(6378000 * 2, 0);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration = 2.45);
-		assert(g.direction = -1.57);
+		assert(g.direction.radians = -1.57);
 
 		// TEARDOWN
 	}
@@ -221,11 +232,11 @@ private:
 		DummyPosition p(-6378000 * 2, 0);
 
 		// EXERCISE
-		g = getGravity(p);
+		Acceleration g = getGravity(p);
 
 		// VERIFY
 		assert(g.acceleration = 2.45);
-		assert(g.direction = 1.57);
+		assert(g.direction.radians = 1.57);
 
 		// TEARDOWN
 	}

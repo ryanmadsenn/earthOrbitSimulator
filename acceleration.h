@@ -1,6 +1,7 @@
 
 
 #pragma once
+#include "direction.h"
 
 /*********************************************
   * ACCELERATION
@@ -11,6 +12,14 @@ class Acceleration
 public:
    // Constructors
    Acceleration() : ddx(0.0), ddy(0.0) {}
+   Acceleration(double accel, const Direction& direction) : ddx(0.0), ddy(0.0)
+   {
+      setAccelerationDirection(accel, direction);
+   }
+   Velocity getVelocity(double time) const
+   {
+      return Velocity(ddx * time, ddy * time);
+   }
    Acceleration(double ddx, double ddy)
    {
       this->ddx = ddx;
@@ -27,8 +36,8 @@ public:
    void setDDY(double ddy) { this->ddy = ddy; }
    void addAcceleration(Acceleration& accel);
    void computeDDX(double angle, double dx) { setDDX(sin(angle) * dx); };
-
    void computeDDY(double angle, double dy) { setDDY(cos(angle) * dy); };
+   void setAccelerationDirection(double accel, const Direction& direction);
 
 
 private:

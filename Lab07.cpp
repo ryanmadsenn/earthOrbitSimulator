@@ -68,7 +68,7 @@ public:
 
       angleShip = M_PI / 2.0;
       angleEarth = 0.0;
-      gpsDX = -3100;
+      gpsDX = -3085;
       gpsDY = 0;
    }
 
@@ -124,9 +124,6 @@ void callBack(const Interface* pUI, void* p)
     // rotate the earth
 //    double multiplier = 0.5;
 
-    pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
-    pDemo->angleShip += 0.01;
-
     // Move the GPS.
     double satX = pDemo->ptGPS.getMetersX();
     double satY = pDemo->ptGPS.getMetersY();
@@ -157,6 +154,13 @@ void callBack(const Interface* pUI, void* p)
     pDemo->ptGPS.setMetersX(xBetween);
     pDemo->ptGPS.setMetersY(yBetween);
 
+    double hypotenuse = sqrt(pow(pDemo->ptGPS.getMetersX(), 2) + pow(pDemo->ptGPS.getMetersY(), 2));
+
+    double angle = asin(pDemo->ptGPS.getMetersY() / hypotenuse);
+    cout << "Angle: " << angle << endl;
+
+    pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
+    pDemo->angleShip = angle;
 
    //
    // draw everything

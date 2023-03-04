@@ -45,7 +45,6 @@ public:
 		return Acceleration(acceleration, direction);
 
 	}
-	void updatePosition();
 
 private:
 	double gravity = 9.80665;

@@ -6,6 +6,8 @@
 #include <cmath>
 #include <iostream>
 
+class TestPhysics;
+
 /*******************************************
 * DEGREES FROM RADIANS
 * radians / 2 pi = degrees / 360
@@ -27,6 +29,8 @@ inline double radiansFromDegrees(double degrees)
 class Direction
 {
 public:
+	friend class TestPhysics;
+
 	// Constructors
 	Direction() : radians(0.0) {}
 	Direction(double degrees) : radians(0.0)

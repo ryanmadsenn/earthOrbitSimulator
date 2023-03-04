@@ -42,7 +42,7 @@ private:
 	void testDefaultVariables()
 	{
 		// SETUP
-
+		// 
 		// EXERCISE		
 
 		// VERIFY

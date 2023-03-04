@@ -3,6 +3,8 @@
 #pragma once
 #include "direction.h"
 
+class TestPhysics;
+
 /*********************************************
   * ACCELERATION
   * An instance of acceleration.
@@ -10,6 +12,8 @@
 class Acceleration
 {
 public:
+    friend class TestPhysics;
+
    // Constructors
    Acceleration() : ddx(0.0), ddy(0.0) {}
    Acceleration(double accel, const Direction& direction) : ddx(0.0), ddy(0.0)
@@ -43,4 +47,7 @@ public:
 private:
    double ddx;     //horizontal acceleration
    double ddy;     //vertical acceleration
+   double acceleration;
+   Direction direction;
+
 };

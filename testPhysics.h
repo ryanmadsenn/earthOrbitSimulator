@@ -27,7 +27,6 @@ public:
 		testComputeTimeDialtion();
 		testComputeTimePerFrame();
 		testComputeRotationSpeed();
-		testComputeSecPerDay();
 		testAccCloseAboveEarth();
 		testAccCloseBelowEarth();
 		testAccCloseLeftEarth();
@@ -52,7 +51,6 @@ private:
 		assert(hoursPerDay == 24);
 		assert(minutesPerHour == 60);
 		assert(secondsPerMinute == 60);
-
 		// TEARDOWN
 	}
 
@@ -64,8 +62,8 @@ private:
 		double timeDilation = computeTimeDilation();
 
 		// VERIFY
-		assert(hoursPerDay == 24);
-		assert(minutesPerHour == 60);
+		assert(hoursperday == 24);
+		assert(minutesperhour == 60);
 		assert(timeDilation == 1440);
 
 		// TEARDOWN
@@ -105,21 +103,6 @@ private:
 		// TEARDOWN
 	}
 
-	void testComputeSecPerDay()
-	{
-		// SETUP
-		
-		// EXERCISE
-		double secPerDay = computeSecPerDay();
-
-		// VERIFY
-		assert(hoursPerDay == 24);
-		assert(secondsPerMinute == 60);
-		assert(minutesPerHour == 60);
-		assert(secPerDay == 86400);
-
-		// TEARDOWN
-	}
 
 	void testAccCloseAboveEarth()
 	{

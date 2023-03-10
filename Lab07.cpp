@@ -24,6 +24,7 @@
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
 #include "position.h"      // for POINT
+#include "test.h"
 using namespace std;
 
 /*************************************************************************
@@ -244,6 +245,8 @@ int main(int argc, char** argv)
 
    // set everything into action
    ui.run(callBack, &demo);
+
+   testRunner();
 
 
    return 0;

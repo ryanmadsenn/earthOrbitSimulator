@@ -11,8 +11,8 @@ void OrbitingObject::initialize(Position position, double dx, double dy, double 
     this->type = type;
 }
 
-Position OrbitingObject::getPosition() {
-    return position;
+Position * OrbitingObject::getPosition() {
+    return &position;
 }
 
 double OrbitingObject::getDx() {

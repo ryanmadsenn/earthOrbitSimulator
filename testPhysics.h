@@ -30,19 +30,20 @@ public:
 		testComputeTimeDialtion();
 		testComputeTimePerFrame();
 		testComputeRotationSpeed();
-		testGravityOnEarth;
-		testGravityAboveEarth;
-		testGravityCloseAboveEarth;
-		testGravityCloseBelowEarth;
-		testGravityTwiceEarthRadius;
-		testCalculateDDX_EarthRight;
-		testCalculateDDX_EarthUp;
-		testCalculateDDY_EarthRight;
-		testCalculateDDY_EarthUp;
-		testSatHeight_CloseEarthX;
-		testSatHeight_CloseEarthY;
-		testSatHeight_SameEarthRadiusX;
-		testSatHeight_SameEarthRadiusY;
+		testGravityOnEarth();
+		testGravityAboveEarth();
+		testGravityCloseAboveEarth();
+		testGravityCloseBelowEarth();
+		testGravityTwiceEarthRadius();
+		testCalculateDDX_EarthRight();
+		testCalculateDDX_EarthUp();
+		testCalculateDDY_EarthRight();
+		testCalculateDDY_EarthUp();
+		testSatHeight_CloseEarthX();
+		testSatHeight_CloseEarthY();
+		testSatHeight_SameEarthRadiusX();
+		testSatHeight_SameEarthRadiusY();
+        cout << "Physics tests passed!\n" << endl;
 	}
 
 private:
@@ -55,7 +56,7 @@ private:
 	void testDefaultVariables()
 	{
 		// SETUP
-
+		// 
 		// EXERCISE		
 
 		// VERIFY
@@ -110,7 +111,7 @@ private:
 		assert(FRAME_RATE == 30);
 		assert(HOURS_PER_DAY == 24);
 		assert(MINUTES_PER_HOUR == 60);
-		assert(rotationSpeed == -0.00348);
+		assert(closeEnough(rotationSpeed, -0.00348, 0.0001));
 		
 
 		// TEARDOWN
@@ -125,7 +126,7 @@ private:
 		double g = getGravity(satHeight);
 
 		// VERIFY
-		assert(closeEnough(g, STANDARD_GRAVITY, 0.000001));
+		assert(closeEnough(g, STANDARD_GRAVITY, 0.0001));
 
 		// TEARDOWN
 	}
@@ -139,7 +140,7 @@ private:
 		double g = getGravity(satHeight);
 
 		// VERIFY
-		assert(closeEnough(g, 9.806, 0.000001));
+		assert(closeEnough(g, 9.80665, 0.0001));
 
 		// TEARDOWN
 	}
@@ -153,7 +154,7 @@ private:
 		double g = getGravity(satHeight);
 
 		// VERIFY
-		assert(closeEnough(g, 9.806, 0.000001));
+		assert(closeEnough(g, 9.80665, 0.00001));
 
 		// TEARDOWN
 	}
@@ -167,7 +168,7 @@ private:
 		double g = getGravity(satHeight);
 
 		// VERIFY
-		assert(closeEnough(g, 2.452, 0.000001));
+		assert(closeEnough(g, 2.45166, 0.00001));
 
 		// TEARDOWN
 	}

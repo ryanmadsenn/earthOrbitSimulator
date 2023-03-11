@@ -158,7 +158,7 @@ void callBack(const Interface* pUI, void* p)
     double hypotenuse = sqrt(pow(pDemo->ptGPS.getMetersX(), 2) + pow(pDemo->ptGPS.getMetersY(), 2));
 
     double angle = asin(pDemo->ptGPS.getMetersY() / hypotenuse);
-    cout << "Angle: " << angle << endl;
+//    cout << "Angle: " << angle << endl;
 
     pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
     pDemo->angleShip = angle;
@@ -243,11 +243,10 @@ int main(int argc, char** argv)
    // Initialize the demo
    Demo demo(ptUpperRight);
 
+    testRunner();
+
    // set everything into action
    ui.run(callBack, &demo);
-
-   testRunner();
-
 
    return 0;
 }

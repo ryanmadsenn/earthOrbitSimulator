@@ -18,8 +18,9 @@ protected:
     string type;
 
 public:
+    ~OrbitingObject() {};
     void initialize(Position position, double dx, double dy, double aRadians, double radius, string type);
-    Position getPosition();
+    Position * getPosition();
     double getDx();
     double getDy();
     double getARadians();

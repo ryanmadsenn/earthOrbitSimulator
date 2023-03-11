@@ -46,8 +46,8 @@ double calculateNewPosition(double position, double velocity, double acceleratio
 }
 
 void applyPhysics(OrbitingObject * obj) {
-    double satX = obj->getPosition().getMetersX();
-    double satY = obj->getPosition().getMetersY();
+    double satX = obj->getPosition()->getMetersX();
+    double satY = obj->getPosition()->getMetersY();
     double satHeight = computeSatHeight(satX, satY);
     double accGravity = getGravity(satHeight);
     double direction = atan2(0- satY, 0 - satX);

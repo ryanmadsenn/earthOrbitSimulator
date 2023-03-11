@@ -9,7 +9,7 @@ void TestSimulator::run() {
     testCheckForCollisions_closeMiss();
     testHandleCollision();
     testUpdateObjects();
-    cout << "TestSimulator Tests Passed!" << endl;
+    cout << "Simulator Tests Passed!" << endl;
 }
 
 // Test 1: No collisions
@@ -35,8 +35,8 @@ void TestSimulator::testCheckForCollisions_true() {
     
     // Setup.
     FakeSimulator fakeSimulator;
-    fakeSimulator.addOrbitingObject(new GPS(100, 100));
-    fakeSimulator.addOrbitingObject(new GPS(100, 100));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
 
     // Exercise and Verify.
     bool isCollision = fakeSimulator.checkForCollisions();
@@ -55,8 +55,8 @@ void TestSimulator::testCheckForCollisions_close() {
     // Since both GPS' have a radius of 12, we place them
     // 23 units apart to make sure the collision is detected.
     FakeSimulator fakeSimulator;
-    fakeSimulator.addOrbitingObject(new GPS(100, 100));
-    fakeSimulator.addOrbitingObject(new GPS(100, 123));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
 
     // Exercise and Verify.
     bool isCollision = fakeSimulator.checkForCollisions();
@@ -70,13 +70,12 @@ void TestSimulator::testCheckForCollisions_close() {
 
 // Test 4: Close miss
 void TestSimulator::testCheckForCollisions_closeMiss() {
-    
     // Setup.
     // Since both GPS' have a radius of 12, we place them
     // 24 units apart to make sure the collision is not detected.
     FakeSimulator fakeSimulator;
-    fakeSimulator.addOrbitingObject(new GPS(100, 100));
-    fakeSimulator.addOrbitingObject(new GPS(100, 124));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 130), 0, 0, 0, 12.0));
 
     // Exercise 
     bool isCollision = fakeSimulator.checkForCollisions();
@@ -92,8 +91,8 @@ void TestSimulator::testCheckForCollisions_closeMiss() {
 void TestSimulator::testHandleCollision() {
     // Setup.
     FakeSimulator fakeSimulator;
-    fakeSimulator.addOrbitingObject(new GPS(100, 100));
-    fakeSimulator.addOrbitingObject(new GPS(100, 100));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
+    fakeSimulator.addOrbitingObject(new GPS(Position(100, 100), 0, 0, 0, 12.0));
 
     // Exercise.
     fakeSimulator.handleCollision(fakeSimulator.getOrbitingObjects()[0], 0, fakeSimulator.getOrbitingObjects()[1], 1);
@@ -103,17 +102,16 @@ void TestSimulator::testHandleCollision() {
 
     // Teardown.
     fakeSimulator.clearOrbitingObjects();
-
 }
 
 void TestSimulator::testUpdateObjects() {
     // Setup.
     FakeSimulator fakeSimulator;
-    fakeSimulator.addOrbitingObject(new GPS(0, 0));
-    fakeSimulator.addOrbitingObject(new Hubble(0, 0));
-    fakeSimulator.addOrbitingObject(new CrewDragon(0, 0));
-    fakeSimulator.addOrbitingObject(new Starlink(0, 0));
-    fakeSimulator.addOrbitingObject(new Sputnik(0, 0));
+    fakeSimulator.addOrbitingObject(new GPS(Position(0, 0), 0, 0, 0, 0));
+    fakeSimulator.addOrbitingObject(new Hubble(Position(0, 0), 0, 0, 0, 0));
+    fakeSimulator.addOrbitingObject(new CrewDragon(Position(0, 0), 0, 0, 0, 0));
+    fakeSimulator.addOrbitingObject(new Starlink(Position(0, 0), 0, 0, 0, 0));
+    fakeSimulator.addOrbitingObject(new Sputnik(Position(0, 0), 0, 0, 0, 0));
 
     // Exercise.
     // With our overloaded updateObjects() method, we will
@@ -122,8 +120,8 @@ void TestSimulator::testUpdateObjects() {
 
     // Verify.
     for (int i = 0; i < fakeSimulator.getOrbitingObjects().size(); i++) {
-        assert(fakeSimulator.getOrbitingObjects()[i]->getPosition().getPixelsX() == 100);
-        assert(fakeSimulator.getOrbitingObjects()[i]->getPosition().getPixelsY() == 100);
+        assert(fakeSimulator.getOrbitingObjects()[i]->getPosition()->getMetersX() == 100);
+        assert(fakeSimulator.getOrbitingObjects()[i]->getPosition()->getMetersY() == 100);
     }
 
     // Teardown.

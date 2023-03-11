@@ -1,4 +1,4 @@
-#include "Simulator/simulator.h"
+#include "simulator.h"
 
 Simulator::Simulator() {
     for (int i = 0; i < 200; i++) {
@@ -55,11 +55,11 @@ void Simulator::handleCollision(OrbitingObject *pObj1, int obj1index, OrbitingOb
 
 }
 
-void Simulator::addOrbitingObject(int *pObj) {
+void Simulator::addOrbitingObject(OrbitingObject *pObj) {
     orbitingObjects.push_back(pObj);
 }
 
-vector<OrbitingObject> Simulator::getOrbitingObjects()
+vector<OrbitingObject*> Simulator::getOrbitingObjects()
 {
     return orbitingObjects;
 }

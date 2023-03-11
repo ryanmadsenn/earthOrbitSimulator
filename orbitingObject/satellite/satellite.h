@@ -3,8 +3,8 @@
 class Satellite : public OrbitingObject {
 protected:
     Satellite();
-
+    Satellite(double x, double y) : OrbitingObject(x,y) {};
 public:
-    virtual void draw() = 0;
-    virtual void smash() = 0;
+    virtual void draw() override;
+    virtual void smash() override;
 };

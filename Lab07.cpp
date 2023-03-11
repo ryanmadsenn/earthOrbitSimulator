@@ -241,10 +241,10 @@ int main(int argc, char** argv)
    ui.setFramesPerSecond(60);
 
    // Initialize the demo
-   Demo demo(ptUpperRight);
+   // Demo demo(ptUpperRight);
 
    // set everything into action
-   ui.run(callBack, &demo);
+   // ui.run(callBack, &demo);
 
    testRunner();
 

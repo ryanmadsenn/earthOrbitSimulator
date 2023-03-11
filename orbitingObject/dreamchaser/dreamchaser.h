@@ -5,9 +5,11 @@ private:
     bool isThrusting = false;
 
 public:
+    DreamChaser() : OrbitingObject() {};
     DreamChaser(Position position, double dx, double dy, double aRadins, double radius);
     void thrust();
     void shoot();
-    virtual void draw() const;
-    virtual void smash(vector<OrbitingObject *> orbitingObjects) const;
+    virtual void draw() override;
+    virtual void smash() override;
+    //virtual void smash(vector<OrbitingObject *> orbitingObjects) override;
 };

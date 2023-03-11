@@ -3,6 +3,8 @@
 class GPS : public Satellite {
 public:
     GPS(Position position, double dx, double dy, double aRadins, double radius);
+    GPS(double x, double y) : Satellite(x, y) {};
+    void initialize();
     virtual void draw() const;
     virtual void smash(vector<OrbitingObject *> orbitingObjects) const;
 };

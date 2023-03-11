@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "position/position.h"
+#include "../position/position.h"
 #include "../uiDraw.h"
 
 using namespace std;
@@ -8,6 +8,7 @@ using namespace std;
 class OrbitingObject {
 protected:
     OrbitingObject();
+    OrbitingObject(double x, double y) : position(Position(x, y)) {};
     Position position;
     double dx;
     double dy;

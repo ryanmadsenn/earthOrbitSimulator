@@ -86,8 +86,8 @@ void TestSimulator::testCheckForCollisions_closeMiss() {
     fakeSimulator.clearOrbitingObjects();
 }
 
+// Test 5: Two GPS's 
 void TestSimulator::testHandleCollision() {
-    // Test 1: Two GPS's
     // Setup.
     FakeSimulator fakeSimulator;
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
@@ -120,8 +120,8 @@ void TestSimulator::testUpdateObjects() {
 
     // Verify.
     for (int i = 0; i < fakeSimulator.getOrbitingObjects().size(); i++) {
-        assert(fakeSimulator.getOrbitingObjects()[i]->getX() == 100);
-        assert(fakeSimulator.getOrbitingObjects()[i]->getY() == 100);
+        assert(fakeSimulator.getOrbitingObjects()[i]->getPosition().getPixelsX() == 100);
+        assert(fakeSimulator.getOrbitingObjects()[i]->getPosition().getPixelsY() == 100);
     }
 
     // Teardown.

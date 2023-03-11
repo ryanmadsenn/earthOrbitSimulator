@@ -17,7 +17,7 @@
  ****************************************************************/
 void testRunner()
 {
-   cout << "stating testing"  << endl;
+   cout << "starting tests ..."  << endl;
    TestPosition().run();
    TestPhysics().run();
 }

@@ -8,7 +8,7 @@ public:
 
     virtual bool checkForCollisions();
 
-    virtual void handleCollsion(OrbitingObject *obj1, int obj1index, OrbitingObject *obj2, int obj2index);
+    virtual void handleCollisions(OrbitingObject *obj1, int obj1index, OrbitingObject *obj2, int obj2index);
 
     virtual void updateObjects();
 };

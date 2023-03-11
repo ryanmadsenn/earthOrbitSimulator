@@ -1,57 +1,86 @@
 #include "testSimulator.h"
 
+
 void TestSimulator::run() {
-    testCheckForCollisions();
+    testCheckForCollisions_false();
+    testCheckForCollisions_true();
+    testCheckForCollisions_close();
+    testCheckForCollisions_closeMiss();
     testHandleCollision();
     testUpdateObjects();
 }
 
-void TestSimulator::testCheckForCollisions() {
-    // Test 1: No collisions
+// Test 1: No collisions
+void TestSimulator::testCheckForCollisions_false() {
+    
     // Setup.
     FakeSimulator fakeSimulator;
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
     fakeSimulator.addOrbitingObject(new GPS(-100, -100));
 
-    //Exercise and Verify.
-    assert(!fakeSimulator.checkForCollisions());
+    // Exercise 
+    bool isCollision = fakeSimulator.checkForCollisions();
+
+    // Verify.
+    assert(!isCollision);
 
     // Teardown.
     fakeSimulator.clearOrbitingObjects();
+}
 
-    // Test 2: Obvious Collision
+// Test 2: Obvious Collision
+void TestSimulator::testCheckForCollisions_true() {
+    
     // Setup.
+    FakeSimulator fakeSimulator;
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
 
     // Exercise and Verify.
-    assert(fakeSimulator.checkForCollisions());
+    bool isCollision = fakeSimulator.checkForCollisions();
+
+    // Verify.
+    assert(isCollision);
 
     // Teardown.
     fakeSimulator.clearOrbitingObjects();
+}
 
-    // Test 3: Close collision
+// Test 3: Close collision
+void TestSimulator::testCheckForCollisions_close() {
+    
     // Setup.
     // Since both GPS' have a radius of 12, we place them
     // 23 units apart to make sure the collision is detected.
+    FakeSimulator fakeSimulator;
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
     fakeSimulator.addOrbitingObject(new GPS(100, 123));
 
     // Exercise and Verify.
-    assert(fakeSimulator.checkForCollisions());
+    bool isCollision = fakeSimulator.checkForCollisions();
+
+    // Verify.
+    assert(isCollision);
 
     // Teardown.
     fakeSimulator.clearOrbitingObjects();
+}
 
-    // Test 4: Close miss
+// Test 4: Close miss
+void TestSimulator::testCheckForCollisions_closeMiss() {
+    
     // Setup.
     // Since both GPS' have a radius of 12, we place them
     // 24 units apart to make sure the collision is not detected.
+    FakeSimulator fakeSimulator;
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
     fakeSimulator.addOrbitingObject(new GPS(100, 124));
 
-    // Exercise and Verify.
-    assert(!fakeSimulator.checkForCollisions());
+    // Exercise 
+    bool isCollision = fakeSimulator.checkForCollisions();
+
+    // Verify.
+    assert(!isCollision);
 
     // Teardown.
     fakeSimulator.clearOrbitingObjects();

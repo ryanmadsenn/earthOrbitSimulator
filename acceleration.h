@@ -20,7 +20,7 @@ public:
    {
       setAccelerationDirection(accel, direction);
    }
-   Velocity getVelocity(double time) const
+   Velocity getVelocity(double time) 
    {
       return Velocity(ddx * time, ddy * time);
    }

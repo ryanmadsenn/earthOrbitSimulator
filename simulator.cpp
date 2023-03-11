@@ -59,6 +59,11 @@ void Simulator::addOrbitingObject(int *pObj) {
     orbitingObjects.push_back(pObj);
 }
 
+vector<OrbitingObject> Simulator::getOrbitingObjects()
+{
+    return orbitingObjects;
+}
+
 void Simulator::clearOrbitingObjects() {
     orbitingObjects.clear();
 }

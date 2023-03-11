@@ -1,11 +1,16 @@
-//
+#include "orbitingObject.h"
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
 
 class Simulator {
 protected:
     vector<Star> stars;
     Earth earth;
     DreamChaser dreamChaser;
-    vector<OrbitingObject *> orbitingObjects;
+    vector<OrbitingObject> orbitingObjects;
     vector<Projectile> projectiles;
     Interface *pUI;
 
@@ -25,6 +30,8 @@ public:
     virtual void updateObjects();
 
     void addOrbitingObject(OrbitingObject *pObj);
+
+    vector<OrbitingObject> getOrbitingObjects();
 
     void clearOrbitingObjects();
 

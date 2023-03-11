@@ -21,10 +21,10 @@
 #include <cmath>        // for M_PI
 #include <iomanip>
 #include <vector>
-#include "uiInteract.h" // for INTERFACE
-#include "uiDraw.h"     // for RANDOM and DRAW*
+#include "uiInteract/uiInteract.h" // for INTERFACE
+#include "uiDraw/uiDraw.h"     // for RANDOM and DRAW*
 #include "position/position.h"      // for POINT
-#include "test.h"
+#include "tests/test.h"
 using namespace std;
 
 /*************************************************************************

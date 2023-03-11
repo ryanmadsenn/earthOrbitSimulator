@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "../position/position.h"
-#include "../uiDraw.h"
+#include "uiDraw/uiDraw.h"
 
 using namespace std;
 

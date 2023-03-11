@@ -1,8 +1,6 @@
 
 
 #pragma once
-#include "velocity.h"
-#include "acceleration.h"
 #include "position/position.h"
 #include "orbitingObject/orbitingObject.h"
 

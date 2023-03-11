@@ -1,4 +1,4 @@
-#include "satellite.h"
+#include "orbitingObject/satellite/satellite.h"
 
 class GPS : public Satellite {
 public:

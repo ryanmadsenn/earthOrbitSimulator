@@ -13,6 +13,8 @@
 #include "position/dummyPosition.h"
 #include "direction.h"
 #include <cassert>
+#include <cmath>
+#define _USE_MATH_DEFINES
 
 /*******************************
  * TEST Physics
@@ -28,14 +30,19 @@ public:
 		testComputeTimeDialtion();
 		testComputeTimePerFrame();
 		testComputeRotationSpeed();
-		testAccCloseAboveEarth();
-//		testAccCloseBelowEarth();
-//		testAccCloseLeftEarth();
-//		testAccCloseRightEarth();
-//		testAccTwiceAboveEarth();
-//		testAccTwiceBelowEarth();
-//		testAccTwiceLeftEarth();
-//		testAccTwiceRightEarth();
+		testGravityOnEarth;
+		testGravityAboveEarth;
+		testGravityCloseAboveEarth;
+		testGravityCloseBelowEarth;
+		testGravityTwiceEarthRadius;
+		testCalculateDDX_EarthRight;
+		testCalculateDDX_EarthUp;
+		testCalculateDDY_EarthRight;
+		testCalculateDDY_EarthUp;
+		testSatHeight_CloseEarthX;
+		testSatHeight_CloseEarthY;
+		testSatHeight_SameEarthRadiusX;
+		testSatHeight_SameEarthRadiusY;
 	}
 
 private:
@@ -48,7 +55,7 @@ private:
 	void testDefaultVariables()
 	{
 		// SETUP
-		// 
+
 		// EXERCISE		
 
 		// VERIFY
@@ -178,4 +185,126 @@ private:
 
 		// TEARDOWN
 	}
+
+	void testSatHeight_SameEarthRadiusY()
+	{
+		// Setup.
+		double satX = 0;
+		double satY = 6378000;
+
+		// Exercise.
+		double height = computeSatHeight(satX, satY);
+
+		// Verify.
+		assert(height == 0.0);
+
+		// Teardown.
+	}
+
+	void testSatHeight_SameEarthRadiusX()
+	{
+		// Setup.
+		double satX = 6378000;
+		double satY = 0;
+
+		// Exercise.
+		double height = computeSatHeight(satX, satY);
+
+		// Verify.
+		assert(height == 0.0);
+
+		// Teardown.
+	}
+
+	void testSatHeight_CloseEarthX()
+	{
+		// Setup.
+		double satX = 6378000 + 1;
+		double satY = 0;
+
+		// Exercise.
+		double height = computeSatHeight(satX, satY);
+
+		// Verify.
+		assert(height == 1.0);
+
+		// Teardown.
+	}
+
+	void testSatHeight_CloseEarthY()
+	{
+		// Setup.
+		double satX = 0;
+		double satY = 6378000 + 1;
+
+		// Exercise.
+		double height = computeSatHeight(satX, satY);
+
+		// Verify.
+		assert(height == 1.0);
+
+		// Teardown.
+	}
+
+	void testCalculateDDX_EarthRight()
+	{
+		// Setup.
+		double accGravity = 9.806;
+		double direction = 0;
+
+		// Exercise.
+		double acc = calculateDDX(accGravity, direction);
+
+		// Verify.
+		assert(closeEnough(acc, 0.0, 0.000001));
+
+		// Teardown.
+	}
+
+	void testCalculateDDY_EarthRight()
+	{
+		// Setup.
+		double accGravity = 9.806;
+		double direction = 0;
+
+		// Exercise.
+		double acc = calculateDDY(accGravity, direction);
+
+		// Verify.
+		assert(closeEnough(acc, 9.806, 0.000001));
+
+		// Teardown.
+	}
+
+	void testCalculateDDX_EarthUp()
+	{
+		// Setup.
+		double accGravity = 9.806;
+		double direction = M_PI/2;
+
+		// Exercise.
+		double acc = calculateDDX(accGravity, direction);
+
+		// Verify.
+		assert(closeEnough(acc, 9.806, 0.000001));
+
+		// Teardown.
+	}
+
+	void testCalculateDDY_EarthUp()
+	{
+		// Setup.
+		double accGravity = 9.806;
+		double direction = M_PI / 2;
+
+		// Exercise.
+		double acc = calculateDDY(accGravity, direction);
+
+		// Verify.
+		assert(closeEnough(acc, 0.0, 0.000001));
+
+		// Teardown.
+	}
+
+
 };

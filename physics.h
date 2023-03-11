@@ -14,6 +14,8 @@
 #define MINUTES_PER_HOUR 60
 #define SECONDS_PER_MINUTE 60
 #define TIME 24
+#include <cmath>
+#include <math.h>
 
 // Important computations
 double computeTimeDilation()				{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }

@@ -46,12 +46,12 @@ private:
 		// EXERCISE		
 
 		// VERIFY
-		assert(standardGravity == 9.80665);
-		assert(earthRadius == 6378000);
-		assert(frameRate == 30);
-		assert(hoursPerDay == 24);
-		assert(minutesPerHour == 60);
-		assert(secondsPerMinute == 60);
+		assert(STANDARD_GRAVITY == 9.80665);
+		assert(EARTH_RADIUS == 6378000);
+		assert(FRAME_RATE == 30);
+		assert(HOURS_PER_DAY == 24);
+		assert(MINUTES_PER_HOUR == 60);
+		assert(SECONDS_PER_MINUTE == 60);
 		// TEARDOWN
 	}
 
@@ -63,8 +63,8 @@ private:
 		double timeDilation = computeTimeDilation();
 
 		// VERIFY
-		assert(hoursperday == 24);
-		assert(minutesperhour == 60);
+		assert(HOURS_PER_DAY == 24);
+		assert(MINUTES_PER_HOUR == 60);
 		assert(timeDilation == 1440);
 
 		// TEARDOWN
@@ -78,9 +78,9 @@ private:
 		double timePerframe = computeTimePerFrame();
 
 		// VERIFY
-		assert(hoursPerDay == 24);
-		assert(minutesPerHour == 60);
-		assert(frameRate = 30);
+		assert(FRAME_RATE == 30);
+		assert(HOURS_PER_DAY == 24);
+		assert(MINUTES_PER_HOUR == 60);
 		assert(timePerframe == 43200);
 
 		// TEARDOWN
@@ -94,10 +94,9 @@ private:
 		double rotationSpeed = computeRotationSpeed();
 
 		// VERIFY
-		assert(frameRate = 30);
-		assert(hoursPerDay == 24);
-		assert(minutesPerHour == 60);
-		assert(frameRate = 30);
+		assert(FRAME_RATE == 30);
+		assert(HOURS_PER_DAY == 24);
+		assert(MINUTES_PER_HOUR == 60);
 		assert(rotationSpeed == -0.00348);
 		
 

@@ -1,24 +1,31 @@
 
 
 #pragma once
-#define _USE_MATH_DEFINES
 
 #include "velocity.h"
 #include "acceleration.h"
 #include "position/position.h"
 
+#define _USE_MATH_DEFINES
+#define STANDARD_GRAVITY 9.80665
+#define EARTH_RADIUS 6378000
+#define FRAME_RATE 30
+#define HOURS_PER_DAY 24
+#define MINUTES_PER_HOUR 60
+#define SECONDS_PER_MINUTE 60
+
 
 // Important computations
-double computeTimeDilation()				{ return hoursPerDay * minutesPerHour; }
-double computeTimePerFrame()				{ return computeTimeDilation() * frameRate; }
-double computeRotationSpeed()				{ return -(((2 * M_PI) / frameRate) * (computeTimeDilation() / computeSecPerDay())); }
-double computeSecPerDay()					{ return hoursPerDay * minutesPerHour * secondsPerMinute; }
+double computeTimeDilation()				{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
+double computeTimePerFrame()				{ return computeTimeDilation() * FRAME_RATE; }
+double computeSecPerDay() { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
+double computeRotationSpeed()				{ return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
 
 double computeSatHeight(const Position& posElement)
 {
 	// Earth is at Position(0,0) by default
 	double distance = computeDistance(Position(), posElement);
-	return distance - earthRadius;
+	return distance - EARTH_RADIUS;
 }
 Acceleration getGravity(const Position& posElement)
 {
@@ -30,16 +37,9 @@ Acceleration getGravity(const Position& posElement)
 
 
 	// a = g_0 (R_e / (R_e + h)) ^ 2
-	double tmp = earthRadius / (earthRadius + height);
-	double acceleration = standardGravity * tmp * tmp;
+	double tmp = EARTH_RADIUS / (EARTH_RADIUS + height);
+	double acceleration = STANDARD_GRAVITY * tmp * tmp;
 
 	return Acceleration(acceleration, direction);
 
 }
-
-double standardGravity = 9.80665;
-double earthRadius = 6378000;
-double frameRate = 30;
-double hoursPerDay = 24;
-double minutesPerHour = 60;
-double secondsPerMinute = 60;

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "acceleration.h"
-#include "dummyPosition.h"
+#include "position/dummyPosition.h"
 #include <cassert>
 
 using namespace std;

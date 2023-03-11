@@ -15,7 +15,7 @@
 #include <string>     // To display text on the screen
 #include <cmath>      // for M_PI, sin() and cos()
 #include <algorithm>  // used for min() and max()
-#include "position.h" // Where things are drawn
+#include "position/position.h" // Where things are drawn
 using std::string;
 using std::min;
 using std::max;
@@ -62,7 +62,7 @@ void drawFragment(const Position& center, double rotation);
 void drawProjectile(const Position& pt);
 
 /************************************************************************
- * DRAW Crew Dragon
+ * DRAW Crew CrewDragon
  * Draw a crew dragon on the screen. It consists of three components
  *  INPUT point   The position of the ship
  *        angle   Which direction it is pointed

@@ -2,7 +2,7 @@
  * 1. Name:
  *      Demo
  * 2. Assignment Name:
- *      Lab 07: Orbit Simulator
+ *      Lab 07: Orbit simulator
  * 3. Assignment Description:
  *      Simulate satellites orbiting the earth
  * 4. What was the hardest part? Be as specific as possible.
@@ -23,7 +23,7 @@
 #include <vector>
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
-#include "position.h"      // for POINT
+#include "position/position.h"      // for POINT
 #include "test.h"
 using namespace std;
 

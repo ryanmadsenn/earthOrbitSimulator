@@ -10,7 +10,7 @@
 #pragma once
 
 #include "physics.h"
-#include "dummyPosition.h"
+#include "position/dummyPosition.h"
 #include "direction.h"
 #include <cassert>
 

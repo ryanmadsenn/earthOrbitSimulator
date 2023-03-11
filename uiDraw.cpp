@@ -35,7 +35,7 @@
 #include <math.h>
 #endif // _WIN32
 
-#include "position.h"
+#include "position/position.h"
 #include "uiDraw.h"
 
 using namespace std;
@@ -238,8 +238,8 @@ void drawFragment(const Position& center, double rotation)
 }
 
 /************************************************************************
- * DRAW Crew Dragon Center
- * Draw the center part of the Crew Dragon module
+ * DRAW Crew CrewDragon Center
+ * Draw the center part of the Crew CrewDragon module
  *  INPUT center    The position of the ship
  *        rotation  Which direction it is point
  *************************************************************************/
@@ -258,7 +258,7 @@ void drawCrewDragonCenter(const Position& center, double rotation)
 }
 
 /************************************************************************
- * DRAW Crew Dragon Right array
+ * DRAW Crew CrewDragon Right array
  * Draw the right solar array of the crew dragon module
  *  INPUT center    The position of the ship
  *        rotation  Which direction it is point
@@ -279,7 +279,7 @@ void drawCrewDragonRight(const Position& center, double rotation, const Position
 }
 
 /************************************************************************
- * DRAW Crew Dragon Left array
+ * DRAW Crew CrewDragon Left array
  * Draw the left solar array of the crew dragon module
  *  INPUT center    The position of the ship
  *        rotation  Which direction it is point
@@ -301,7 +301,7 @@ void drawCrewDragonLeft(const Position& center, double rotation, const Position&
 
 
 /************************************************************************
- * DRAW Crew Dragon
+ * DRAW Crew CrewDragon
  * Draw a crew dragon on the screen. It consists of three components
  *  INPUT center    The position of the ship
  *        rotation  Which direction it is point

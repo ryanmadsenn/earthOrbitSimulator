@@ -1,3 +1,4 @@
+#pragma once
 #include "simulator/fakeSimulator.h"
 #include "orbitingObject/satellite/gps/gps.h"
 #include "orbitingObject/satellite/hubble/hubble.h"
@@ -10,16 +11,14 @@ using namespace std;
 
 
 class TestSimulator {
+public:
     TestSimulator();
 
     void run();
-
     void testCheckForCollisions_false();
     void testCheckForCollisions_true();
     void testCheckForCollisions_close();
     void testCheckForCollisions_closeMiss();
-
     void testHandleCollision();
-
     void testUpdateObjects();
 };

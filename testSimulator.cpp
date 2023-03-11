@@ -1,5 +1,6 @@
 #include "testSimulator.h"
 
+TestSimulator::TestSimulator() {}
 
 void TestSimulator::run() {
     testCheckForCollisions_false();
@@ -8,6 +9,7 @@ void TestSimulator::run() {
     testCheckForCollisions_closeMiss();
     testHandleCollision();
     testUpdateObjects();
+    cout << "TestSimulator Tests Passed!" << endl;
 }
 
 // Test 1: No collisions

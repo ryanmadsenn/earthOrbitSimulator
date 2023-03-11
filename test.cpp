@@ -10,6 +10,7 @@
 #include "test.h"
 #include "testPosition.h"
 #include "testPhysics.h"
+#include "testSimulator.h"
 
 /*****************************************************************
  * TEST RUNNER
@@ -17,7 +18,8 @@
  ****************************************************************/
 void testRunner()
 {
-   cout << "starting tests ..."  << endl;
-   TestPosition().run();
-   TestPhysics().run();
+    cout << "Running tests..."  << endl;
+    TestSimulator().run();
+    TestPosition().run();
+    TestPhysics().run();
 }

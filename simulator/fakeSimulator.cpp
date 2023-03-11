@@ -1,8 +1,6 @@
 #include "fakeSimulator.h"
 
-FakeSimulator::FakeSimulator() {
-    initialize();
-}
+FakeSimulator::FakeSimulator() {}
 
 void FakeSimulator::initialize() {}
 

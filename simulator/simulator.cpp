@@ -18,6 +18,8 @@ Simulator::Simulator() {
 //    orbitingObjects.push_back(new DreamChaser());
 }
 
+void Simulator::initialize() {};
+
 void Simulator::update() {
     handleInput();
     checkForCollisions();
@@ -81,5 +83,7 @@ void Simulator::draw() {
 //        projectiles[i].draw();
 //    }
 }
+
+void Simulator::updateObjects() {};
 
 

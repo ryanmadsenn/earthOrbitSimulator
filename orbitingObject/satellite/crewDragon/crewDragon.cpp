@@ -4,10 +4,10 @@ CrewDragon::CrewDragon(Position position, double dx, double dy, double aRadians,
     initialize(position, dx, dy, aRadians, radius, "CrewDragon");
 }
 
-void CrewDragon::draw() const {
+void CrewDragon::draw() {
     drawCrewDragon(position, aRadians);
 }
 
-void CrewDragon::smash(vector<OrbitingObject *> orbitingObjects) const {
+void CrewDragon::smash(vector<OrbitingObject *> orbitingObjects) {
     // TODO: Implement this method
 }

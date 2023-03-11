@@ -1,3 +1,4 @@
+#pragma  once
 #include <iostream>
 #include <vector>
 #include "../position/position.h"
@@ -30,5 +31,5 @@ public:
     void setARadians(double aRadians);
     void setRadius(double radius);
     virtual void draw() = 0;
-    virtual void smash() = 0;
+    virtual void smash(vector<OrbitingObject *> orbitingObjects) = 0;
 };

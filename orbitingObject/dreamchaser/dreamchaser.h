@@ -10,6 +10,6 @@ public:
     void thrust();
     void shoot();
     virtual void draw() override;
-    virtual void smash() override;
+    virtual void smash(vector<OrbitingObject *> orbitingObjects) override;
     //virtual void smash(vector<OrbitingObject *> orbitingObjects) override;
 };

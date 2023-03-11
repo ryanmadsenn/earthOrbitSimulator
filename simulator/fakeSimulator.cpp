@@ -9,8 +9,8 @@ void FakeSimulator::initialize() {}
 bool FakeSimulator::checkForCollisions() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
         for (int j = 0; j < orbitingObjects.size(); j++) {
-            distance = sqrt(pow(orbitingObjects[i]->getX() - orbitingObjects[j]->getX(), 2) +
-                            pow(orbitingObjects[i]->getY() - orbitingObjects[j]->getY(), 2));
+            double distance = sqrt(pow(orbitingObjects[i]->getPosition().getMetersX() - orbitingObjects[j]->getPosition().getMetersX(), 2) +
+                            pow(orbitingObjects[i]->getPosition().getMetersY() - orbitingObjects[j]->getPosition().getMetersY(), 2));
 
             if (distance < orbitingObjects[i]->getRadius() + orbitingObjects[j]->getRadius()) {
                 return true;
@@ -21,7 +21,7 @@ bool FakeSimulator::checkForCollisions() {
     return false;
 }
 
-void FakeSimulator::handleCollsion(OrbitingObject *obj1, int obj1index, OrbitingObject *obj2, int obj2index) {
+void FakeSimulator::handleCollision(OrbitingObject *obj1, int obj1index, OrbitingObject *obj2, int obj2index) {
     // Ordinarily, we would call the object's break methods,
     // but that is not in the scope of this test.
 
@@ -37,7 +37,7 @@ void FakeSimulator::handleCollsion(OrbitingObject *obj1, int obj1index, Orbiting
 
 void FakeSimulator::updateObjects() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
-        orbitingObjects[i].positiong.setMetersX(100);
-        orbitingObjects[i].positiong.setMetersY(100);
+        orbitingObjects[i]->getPosition().setMetersX(100);
+        orbitingObjects[i]->getPosition().setMetersY(100);
     }
 }

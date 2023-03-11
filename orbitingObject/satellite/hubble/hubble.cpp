@@ -4,10 +4,10 @@ Hubble::Hubble(Position position, double dx, double dy, double aRadians, double 
     initialize(position, dx, dy, aRadians, radius, "Hubble");
 }
 
-void Hubble::draw() const {
+void Hubble::draw() {
     drawHubble(position, aRadians);
 }
 
-void Hubble::smash(vector<OrbitingObject *> orbitingObjects) const {
+void Hubble::smash(vector<OrbitingObject *> orbitingObjects) {
     // TODO: Implement this method
 }

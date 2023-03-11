@@ -94,7 +94,7 @@ void TestSimulator::testHandleCollision() {
     fakeSimulator.addOrbitingObject(new GPS(100, 100));
 
     // Exercise.
-    fakeSimulator.handleCollisions();
+    fakeSimulator.handleCollision(fakeSimulator.getOrbitingObjects()[0], 0, fakeSimulator.getOrbitingObjects()[1], 1);
 
     // Verify.
     assert(fakeSimulator.getOrbitingObjects().size() == 0);

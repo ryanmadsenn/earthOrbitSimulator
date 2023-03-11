@@ -4,7 +4,7 @@
 #include "../orbitingObject/satellite/crewDragon/crewDragon.h"
 #include "../orbitingObject/satellite/sputnik/sputnik.h"
 #include "../orbitingObject/satellite/starlink/starlink.h"
-#include "../orbitingObject/dreamchaser/dreamChaser.h"
+#include "../orbitingObject/dreamchaser/dreamchaser.h"
 #include "../uiInteract.h"
 #include "../projectile.h"
 #include "../earth.h"
@@ -35,7 +35,7 @@ public:
 
     virtual bool checkForCollisions();
 
-    virtual void handleCollision();
+    virtual void handleCollision(OrbitingObject * obj1, int obj1index, OrbitingObject * obj2, int obj2index);
 
     virtual void updateObjects();
 

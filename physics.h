@@ -1,10 +1,10 @@
 
 
 #pragma once
-
 #include "velocity.h"
 #include "acceleration.h"
 #include "position/position.h"
+#include "orbitingObject/orbitingObject.h"
 
 #define _USE_MATH_DEFINES
 #define STANDARD_GRAVITY 9.80665
@@ -13,7 +13,7 @@
 #define HOURS_PER_DAY 24
 #define MINUTES_PER_HOUR 60
 #define SECONDS_PER_MINUTE 60
-
+#define TIME 24
 
 // Important computations
 double computeTimeDilation()				{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
@@ -21,25 +21,49 @@ double computeTimePerFrame()				{ return computeTimeDilation() * FRAME_RATE; }
 double computeSecPerDay() { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
 double computeRotationSpeed()				{ return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
 
-double computeSatHeight(const Position& posElement)
+double computeSatHeight(double satX, double satY)
 {
-	// Earth is at Position(0,0) by default
-	double distance = computeDistance(Position(), posElement);
-	return distance - EARTH_RADIUS;
+    return (sqrt(pow(satX, 2) + pow(satY, 2)) - EARTH_RADIUS);
 }
-Acceleration getGravity(const Position& posElement)
+
+double getGravity(double satHeight)
 {
-	double height = computeSatHeight(posElement);
+    return (STANDARD_GRAVITY * pow((EARTH_RADIUS / (EARTH_RADIUS + satHeight)), 2));
+}
 
-	Direction direction;
+double calculateDDX(double accGravity, double direction) {
+    return accGravity * sin(direction);
+}
 
-	direction.setDxDy(-posElement.getMetersX(), -posElement.getMetersY());
+double calculateDDY(double accGravity, double direction){
+    return accGravity * cos(direction);
+}
 
+double calculateNewPosition(double position, double velocity, double acceleration) {
+    return position + velocity * TIME + 0.5 * acceleration * pow(TIME, 2);
+}
 
-	// a = g_0 (R_e / (R_e + h)) ^ 2
-	double tmp = EARTH_RADIUS / (EARTH_RADIUS + height);
-	double acceleration = STANDARD_GRAVITY * tmp * tmp;
+void applyPhysics(OrbitingObject * obj) {
+    double satX = obj->getPosition().getMetersX();
+    double satY = obj->getPosition().getMetersY();
+    double satHeight = computeSatHeight(satX, satY);
+    double accGravity = getGravity(satHeight);
+    double direction = atan2(0- satY, 0 - satX);
+    double accX = accGravity * sin(direction);
+    double accY = accGravity * cos(direction);
 
-	return Acceleration(acceleration, direction);
+    double prevDX = obj->getDx();
+    double prevDY = obj->getDy();
+    obj->setDx(obj->getDx() + accX * TIME);
+    obj->setDy(obj->getDy() + accY * TIME);
 
+    double xFromPrev = calculateNewPosition(satX, prevDX, accX);
+    double yFromPrev = calculateNewPosition(satY, prevDY, accY);
+    double xFromCurr = calculateNewPosition(satX, obj->getDx(), accX);
+    double yFromCurr = calculateNewPosition(satY, obj->getDy(), accY);
+
+    double xBetween = (xFromPrev + xFromCurr) / 2;
+    double yBetween = (yFromPrev + yFromCurr) / 2;
+
+    obj->setPosition(Position(xBetween, yBetween));
 }

@@ -4,7 +4,7 @@ Sputnik::Sputnik(Position position, double dx, double dy, double aRadians, doubl
     initialize(position, dx, dy, aRadians, radius, "Sputnik");
 }
 
-void Sputnik::draw(ogstream gout) {
+void Sputnik::draw() {
     drawSputnik(position, aRadians);
 }
 

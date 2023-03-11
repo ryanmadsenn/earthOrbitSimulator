@@ -13,10 +13,10 @@ void DreamChaser::shoot() {
     // TODO: Implement this method.
 }
 
-void DreamChaser::draw() const {
+void DreamChaser::draw() {
     drawShip(position, aRadians, isThrusting);
 }
 
-void DreamChaser::smash(vector<OrbitingObject *> orbitingObjects) const {
+void DreamChaser::smash(vector<OrbitingObject *> orbitingObjects) {
     // TODO: Implement this method.
 }

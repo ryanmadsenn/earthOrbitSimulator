@@ -15,8 +15,6 @@
 #include <cmath>
 
 class TestPosition;
-class Acceleration;
-class Velocity;
 
 /*********************************************
  * Position

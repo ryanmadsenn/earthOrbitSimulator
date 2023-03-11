@@ -230,23 +230,23 @@ int WINAPI wWinMain(
 int main(int argc, char** argv)
 #endif // !_WIN32
 {
-   // Initialize OpenGL
-   Position ptUpperRight;
-   ptUpperRight.setZoom(128000.0 /* 128km equals 1 pixel */);
-   ptUpperRight.setPixelsX(1000.0);
-   ptUpperRight.setPixelsY(1000.0);
-   Interface ui(0, NULL,
-      "Demo",   /* name on the window */
-      ptUpperRight);
-   ui.setFramesPerSecond(60);
-
-   // Initialize the demo
-   Demo demo(ptUpperRight);
-
     testRunner();
 
-   // set everything into action
-   ui.run(callBack, &demo);
+    // Initialize OpenGL
+    Position ptUpperRight;
+    ptUpperRight.setZoom(128000.0 /* 128km equals 1 pixel */);
+    ptUpperRight.setPixelsX(1000.0);
+    ptUpperRight.setPixelsY(1000.0);
+    Interface ui(0, NULL,
+      "Demo",   /* name on the window */
+      ptUpperRight);
+    ui.setFramesPerSecond(60);
 
-   return 0;
+    // Initialize the demo
+    Demo demo(ptUpperRight);
+
+    // set everything into action
+    ui.run(callBack, &demo);
+
+    return 0;
 }

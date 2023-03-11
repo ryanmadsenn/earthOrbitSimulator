@@ -109,8 +109,63 @@ private:
 		// TEARDOWN
 	}
 
+	void testGravityOnEarth()
+	{
+		// SETUP
+		double satHeight = 0;
 
-	void testAccCloseAboveEarth()
+		// EXERCISE
+		double g = getGravity(satHeight);
+
+		// VERIFY
+		assert(closeEnough(g, STANDARD_GRAVITY, 0.000001));
+
+		// TEARDOWN
+	}
+
+	void testGravityCloseAboveEarth()
+	{
+		// SETUP
+		double satHeight = 1;
+
+		// EXERCISE
+		double g = getGravity(satHeight);
+
+		// VERIFY
+		assert(closeEnough(g, 9.806, 0.000001));
+
+		// TEARDOWN
+	}
+
+	void testGravityCloseBelowEarth()
+	{
+		// SETUP
+		double satHeight = -1;
+
+		// EXERCISE
+		double g = getGravity(satHeight);
+
+		// VERIFY
+		assert(closeEnough(g, 9.806, 0.000001));
+
+		// TEARDOWN
+	}
+
+	void testGravityTwiceEarthRadius()
+	{
+		// SETUP
+		double satHeight = 6378000;
+
+		// EXERCISE
+		double g = getGravity(satHeight);
+
+		// VERIFY
+		assert(closeEnough(g, 2.452, 0.000001));
+
+		// TEARDOWN
+	}
+
+	void testGravityAboveEarth()
 	{
 		// SETUP
 		double satHeight = 42164000;
@@ -123,109 +178,4 @@ private:
 
 		// TEARDOWN
 	}
-
-//	void testAccCloseBelowEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(0, -6378000 + 1);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration == 9.806);
-//		assert(g.direction.radians == 0);
-//
-//		// TEARDOWN
-//	}
-
-//	void testAccCloseLeftEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(-6378000 - 1, 0);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration == 9.806);
-//		assert(g.direction.radians == 1.57);
-//
-//		// TEARDOWN
-//	}
-
-//	void testAccCloseRightEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(6378000 + 1, 0);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration == 9.806);
-//		assert(g.direction.radians == -1.57);
-//
-//		// TEARDOWN
-//	}
-
-//	void testAccTwiceAboveEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(0, 6378000 * 2);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration == 2.45);
-//		assert(g.direction.radians == 0.055);
-//
-//		// TEARDOWN
-//	}
-
-//	void testAccTwiceBelowEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(0, -6378000 * 2);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration = 2.45);
-//		assert(g.direction.radians = 0);
-//
-//		// TEARDOWN
-//	}
-
-//	void testAccTwiceRightEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(6378000 * 2, 0);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration = 2.45);
-//		assert(g.direction.radians = -1.57);
-//
-//		// TEARDOWN
-//	}
-
-//	void testAccTwiceLeftEarth()
-//	{
-//		// SETUP
-//		DummyPosition p(-6378000 * 2, 0);
-//
-//		// EXERCISE
-//		Acceleration g = getGravity(p);
-//
-//		// VERIFY
-//		assert(g.acceleration = 2.45);
-//		assert(g.direction.radians = 1.57);
-//
-//		// TEARDOWN
-//	}
 };

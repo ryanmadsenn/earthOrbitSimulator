@@ -17,6 +17,6 @@
  ****************************************************************/
 void testRunner()
 {
-   TestPosition().run();
-   TestPhysics().run();
+   TestPhysics.run();
+   TestSimulator.run();
 }

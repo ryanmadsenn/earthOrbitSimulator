@@ -1,9 +1,19 @@
 #include "fakeSimulator.h"
 
+/*******************************************************
+ *
+ *******************************************************/
 FakeSimulator::FakeSimulator() {}
 
+/*******************************************************
+ *
+ *******************************************************/
 void FakeSimulator::initialize() {}
 
+/*******************************************************
+ *
+ * @return
+ *******************************************************/
 bool FakeSimulator::checkForCollisions() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
         for (int j = i + 1; j < orbitingObjects.size(); j++) {
@@ -19,6 +29,13 @@ bool FakeSimulator::checkForCollisions() {
     return false;
 }
 
+/*******************************************************
+ *
+ * @param obj1
+ * @param obj1index
+ * @param obj2
+ * @param obj2index
+ *******************************************************/
 void FakeSimulator::handleCollision(OrbitingObject *obj1, int obj1index, OrbitingObject *obj2, int obj2index) {
     // Ordinarily, we would call the object's break methods,
     // but that is not in the scope of this test.
@@ -34,6 +51,9 @@ void FakeSimulator::handleCollision(OrbitingObject *obj1, int obj1index, Orbitin
     delete obj2;
 }
 
+/*******************************************************
+ *
+ *******************************************************/
 void FakeSimulator::updateObjects() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
         orbitingObjects[i]->getPosition()->setMetersX(100);

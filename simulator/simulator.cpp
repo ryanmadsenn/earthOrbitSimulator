@@ -1,5 +1,8 @@
 #include "simulator.h"
 
+/*******************************************************
+ *
+ *******************************************************/
 Simulator::Simulator() {
 //    for (int i = 0; i < 200; i++)
 //        stars.push_back(Star());
@@ -17,14 +20,23 @@ Simulator::Simulator() {
 //    orbitingObjects.push_back(new DreamChaser());
 }
 
+/*******************************************************
+ *
+ *******************************************************/
 void Simulator::initialize() {};
 
+/*******************************************************
+ *
+ *******************************************************/
 void Simulator::update() {
     handleInput();
     checkForCollisions();
     updateObjects();
 }
 
+/*******************************************************
+ *
+ *******************************************************/
 void Simulator::handleInput() {
 //    if (pUI->isSpace())
 //        projectiles.push_back(Projectile(dreamChaser.getDX(), dreamChaser.getDY()));
@@ -36,6 +48,10 @@ void Simulator::handleInput() {
 //        dreamChaser.accelerate();
 }
 
+/*******************************************************
+ *
+ * @return
+ *******************************************************/
 bool Simulator::checkForCollisions() {
 //    for (int i = 0; i < orbitingObjects.size(); i++) {
 //        for (int j = 0; j < orbitingObjects.size(); j++) {
@@ -49,24 +65,45 @@ bool Simulator::checkForCollisions() {
 //    }
 }
 
+/*******************************************************
+ *
+ * @param pObj1
+ * @param obj1index
+ * @param pObj2
+ * @param obj2index
+ *******************************************************/
 void Simulator::handleCollision(OrbitingObject *pObj1, int obj1index, OrbitingObject *pObj2, int obj2index) {
 //    obj1->break(orbitingObjects);
 //    obj2->break(orbitingObjects);
 }
 
+/*******************************************************
+ *
+ * @param pObj
+ *******************************************************/
 void Simulator::addOrbitingObject(OrbitingObject *pObj) {
     orbitingObjects.push_back(pObj);
 }
 
+/*******************************************************
+ *
+ * @return
+ *******************************************************/
 vector<OrbitingObject*> Simulator::getOrbitingObjects()
 {
     return orbitingObjects;
 }
 
+/*******************************************************
+ *
+ *******************************************************/
 void Simulator::clearOrbitingObjects() {
     orbitingObjects.clear();
 }
 
+/*******************************************************
+ *
+ *******************************************************/
 void Simulator::draw() {
 //    for (int i = 0; i < stars.size(); i++)
 //        stars[i].draw();
@@ -82,6 +119,9 @@ void Simulator::draw() {
 //    }
 }
 
+/*******************************************************
+ *
+ *******************************************************/
 void Simulator::updateObjects()
 {
     // Update earth's rotation but keep position the same.

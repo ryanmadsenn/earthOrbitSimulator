@@ -16,34 +16,87 @@
 #include <math.h>
 
 // Important computations
-double computeTimeDilation()				{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
-double computeTimePerFrame()				{ return computeTimeDilation() * FRAME_RATE; }
-double computeSecPerDay() { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
-double computeRotationSpeed()				{ return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
+double computeTimeDilation()	{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
+double computeTimePerFrame()	{ return computeTimeDilation() * FRAME_RATE; }
+double computeSecPerDay()       { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
+double computeRotationSpeed()   { return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
 
+/*******************************************************
+ *
+ * @param satX
+ * @param satY
+ * @return
+ ********************************************************/
 double computeSatHeight(double satX, double satY)
 {
     return (sqrt(pow(satX, 2) + pow(satY, 2)) - EARTH_RADIUS);
 }
 
+/*this method is the same with "computeSatHeight" but I will name if "computeAltitude"
+ * because it can be applied to all orbitingObjects and it uses the position of the
+ * orbitingObjects.*/
+/*******************************************************
+ * GET ALTITUDE
+ * Returns the altitude of a point above the earth
+ * @param ptOrbitingObject
+ * @return distance from the earth
+ *********************************************************/
+double computeAltitude(Position& ptOrbitingObject)
+{
+    double distance = computeDistance(Position(), ptOrbitingObject);
+    return distance - EARTH_RADIUS;
+}
+
+/******************************************************
+ *
+ * @param satHeight
+ * @return
+ *****************************************************/
 double getGravity(double satHeight)
 {
     return (STANDARD_GRAVITY * pow((EARTH_RADIUS / (EARTH_RADIUS + satHeight)), 2));
 }
 
-double calculateDDX(double accGravity, double direction) {
+/******************************************************
+ *
+ * @param accGravity
+ * @param direction
+ * @return
+ ******************************************************/
+double calculateDDX(double accGravity, double direction)
+{
     return accGravity * sin(direction);
 }
 
-double calculateDDY(double accGravity, double direction){
+/******************************************************
+ *
+ * @param accGravity
+ * @param direction
+ * @return
+ ******************************************************/
+double calculateDDY(double accGravity, double direction)
+{
     return accGravity * cos(direction);
 }
 
-double calculateNewPosition(double position, double velocity, double acceleration) {
+/*******************************************************
+ *
+ * @param position
+ * @param velocity
+ * @param acceleration
+ * @return
+ ********************************************************/
+double calculateNewPosition(double position, double velocity, double acceleration)
+{
     return position + velocity * TIME + 0.5 * acceleration * pow(TIME, 2);
 }
 
-void applyPhysics(OrbitingObject * obj) {
+/*******************************************************
+ *
+ * @param obj
+ *******************************************************/
+void applyPhysics(OrbitingObject * obj)
+{
     double satX = obj->getPosition()->getMetersX();
     double satY = obj->getPosition()->getMetersY();
     double satHeight = computeSatHeight(satX, satY);

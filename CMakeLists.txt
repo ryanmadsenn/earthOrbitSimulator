@@ -40,4 +40,5 @@ add_executable(
         orbitingObject/satellite/satellite.cpp
         star/star.cpp
         projectile/projectile.cpp
-)
+        direction/direction.h direction/direction.cpp)
+add_executable(draft draft.txt)

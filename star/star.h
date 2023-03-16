@@ -13,5 +13,8 @@ private:
 public:
     Star();
 
+    void reset(Position& pt);
+
+
     void draw() { drawStar(ptStar, phase); };
 };

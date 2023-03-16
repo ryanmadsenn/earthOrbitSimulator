@@ -1,8 +1,11 @@
 cmake_minimum_required(VERSION 3.24)
 project(231_07_Ponder_GLDemo)
+
 set(CMAKE_CXX_STANDARD 14)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -framework GLUT -framework OpenGL")
 include_directories(.)
+
 add_executable(
         231_07_Ponder_GLDemo
         Lab07.cpp
@@ -34,4 +37,7 @@ add_executable(
         orbitingObject/satellite/crewDragon/crewDragon.cpp
         orbitingObject/dreamchaser/dreamchaser.h
         orbitingObject/dreamchaser/dreamchaser.cpp
-        orbitingObject/satellite/satellite.cpp star/star.cpp projectile/projectile.cpp)
+        orbitingObject/satellite/satellite.cpp
+        star/star.cpp
+        projectile/projectile.cpp
+)

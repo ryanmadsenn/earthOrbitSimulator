@@ -1,10 +1,10 @@
 #include "simulator.h"
 
 Simulator::Simulator() {
-    for (int i = 0; i < 200; i++)
-        stars.push_back(Star());
-
-    earth = Earth();
+//    for (int i = 0; i < 200; i++)
+//        stars.push_back(Star());
+//
+//    earth = Earth();
 //
 //    for (int i = 0; i < 6; i++) {
 //        orbitingObjects.push_back(new GPS());
@@ -68,10 +68,10 @@ void Simulator::clearOrbitingObjects() {
 }
 
 void Simulator::draw() {
-    for (int i = 0; i < stars.size(); i++)
-        stars[i].draw();
-
-    earth.draw();
+//    for (int i = 0; i < stars.size(); i++)
+//        stars[i].draw();
+//
+//    earth.draw();
 
 //    for (int i = 0; i < orbitingObjects.size(); i++) {
 //        orbitingObjects[i]->draw();
@@ -85,9 +85,7 @@ void Simulator::draw() {
 void Simulator::updateObjects()
 {
     // Update earth's rotation but keep position the same.
-    earth.updateAngle(computeRotationSpeed());
-    for (int i = 0; i < projectiles.size(); i++)
-        projectiles[i].updatePosition()
+//    earth.updateAngle(computeRotationSpeed());
 };
 
 

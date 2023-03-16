@@ -1,6 +1,5 @@
 #pragma once
 
-#include "position/position.h"
 #include "../uiDraw/uiDraw.h"
 
 using namespace std;

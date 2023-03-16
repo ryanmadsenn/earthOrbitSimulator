@@ -32,9 +32,8 @@ double computeSatHeight(double satX, double satY)
     return (sqrt(pow(satX, 2) + pow(satY, 2)) - EARTH_RADIUS);
 }
 
-/*this method is the same with "computeSatHeight" but I will name if "computeAltitude"
- * because it can be applied to all orbitingObjects and it uses the position of the
- * orbitingObjects.*/
+/*this method is the same with "computeSatHeight" but I will name if "computeAltitude" because
+ * it can be applied to all orbitingObjects and it uses the position of theorbitingObjects.*/
 /*******************************************************
  * GET ALTITUDE
  * Returns the altitude of a point above the earth
@@ -55,6 +54,31 @@ double computeAltitude(Position& ptOrbitingObject)
 double getGravity(double satHeight)
 {
     return (STANDARD_GRAVITY * pow((EARTH_RADIUS / (EARTH_RADIUS + satHeight)), 2));
+}
+
+/******************************************************
+ * Here is an alternate "getGravity" given the position
+ * of an orbitingObject
+ * @param ptOrbitingObject
+ * @return
+ ******************************************************/
+double getGravity(Position& ptOrbitingObject)
+{
+    double altitude = computeAltitude(ptOrbitingObject);
+    double tmp = EARTH_RADIUS / (EARTH_RADIUS + altitude);
+    return STANDARD_GRAVITY * tmp * tmp;
+}
+
+/******************************************************
+ *
+ * @param orbitingObject
+ * @param acceleration
+ * @param time
+ ******************************************************/
+void updateVelocity(OrbitingObject& orbitingObject, double acceleration)
+{
+    orbitingObject.setDx(orbitingObject.getDx() + (acceleration * TIME));
+    orbitingObject.setDy(orbitingObject.getDy() + (acceleration * TIME));
 }
 
 /******************************************************
@@ -89,6 +113,20 @@ double calculateDDY(double accGravity, double direction)
 double calculateNewPosition(double position, double velocity, double acceleration)
 {
     return position + velocity * TIME + 0.5 * acceleration * pow(TIME, 2);
+}
+
+/*******************************************************
+ *
+ * @param orbitingObject
+ * @param velocity
+ * @param acceleration
+ *******************************************************/
+void updatePosition(OrbitingObject& orbitingObject, double velocity, double acceleration)
+{
+    Position *pt = orbitingObject.getPosition();
+    pt->addMetersX(velocity * TIME + 0.5 * acceleration * pow(TIME, 2));
+    pt->addMetersY(velocity * TIME + 0.5 * acceleration * pow(TIME, 2));
+    orbitingObject.setPosition(*pt);
 }
 
 /*******************************************************

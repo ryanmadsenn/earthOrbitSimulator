@@ -5,6 +5,7 @@
 #include "../orbitingObject/satellite/sputnik/sputnik.h"
 #include "../orbitingObject/satellite/starlink/starlink.h"
 #include "../orbitingObject/dreamchaser/dreamchaser.h"
+#include "../physics/physics.h"
 #include "uiInteract/uiInteract.h"
 #include "projectile/projectile.h"
 #include "earth/earth.h"

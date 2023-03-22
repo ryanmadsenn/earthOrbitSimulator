@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../uiDraw/uiDraw.h"
 #include <vector>
+#include "uiDraw/uiDraw.h"
 using namespace std;
 
 class Projectile
@@ -14,12 +14,15 @@ private:
     vector<Position> path;
 
 public:
-    Projectile();
+    Projectile() {}
+    Projectile(Position ptProjectile, double angleProjectile, double velocity);
+
+    void reset(Position& pt, double angle, double velocity);
 
     // Setters
     void setAngle(double angle) { angleProjectile = angle; }
 
-    void move(double time);
+//    void move();
 
     void draw() { drawProjectile(ptProjectile); }
 };

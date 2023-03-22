@@ -4,8 +4,13 @@
 /*******************************************************
  *
  *******************************************************/
-Star::Star()
+Star::Star(Position ptStar, unsigned char phase)
 {
-    ptStar = Position(random(0, 999), random(0, 999));
-    phase = random(0, 224);
+    initialize(ptStar, phase);
+}
+
+void Star::initialize(Position ptStar, unsigned char phase)
+{
+    this->ptStar = ptStar;
+    this->phase = phase;
 }

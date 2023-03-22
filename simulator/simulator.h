@@ -1,3 +1,5 @@
+#pragma once
+
 #include "../orbitingObject/orbitingObject.h"
 #include "../orbitingObject/satellite/gps/gps.h"
 #include "../orbitingObject/satellite/hubble/hubble.h"
@@ -22,10 +24,11 @@ protected:
     DreamChaser dreamChaser;
     vector<OrbitingObject*> orbitingObjects;
     vector<Projectile> projectiles;
-    Interface *pUI;
+    Interface *pUI{};
 
 public:
-    Simulator();
+    Simulator() = default;
+    Simulator(const Position ptUpperRight);
 
     virtual void initialize();
 

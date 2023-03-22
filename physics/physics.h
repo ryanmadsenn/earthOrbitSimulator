@@ -1,8 +1,11 @@
 
 
 #pragma once
-#include "position/position.h"
 #include "orbitingObject/orbitingObject.h"
+#include <cmath>
+#include <math.h>
+#include <vector>
+#include <map>
 
 #define _USE_MATH_DEFINES
 #define STANDARD_GRAVITY 9.80665
@@ -12,8 +15,6 @@
 #define MINUTES_PER_HOUR 60
 #define SECONDS_PER_MINUTE 60
 #define TIME 24
-#include <cmath>
-#include <math.h>
 
 // Important computations
 double computeTimeDilation()	{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
@@ -105,6 +106,17 @@ double calculateDDY(double accGravity, double direction)
 
 /*******************************************************
  *
+ * @param ptX
+ * @param ptY
+ * @return
+ *******************************************************/
+double computeDirection(double ptX, double ptY)
+{
+    return atan2(0 - ptY, 0 - ptX);
+}
+
+/*******************************************************
+ *
  * @param position
  * @param velocity
  * @param acceleration
@@ -139,9 +151,12 @@ void applyPhysics(OrbitingObject * obj)
     double satY = obj->getPosition()->getMetersY();
     double satHeight = computeSatHeight(satX, satY);
     double accGravity = getGravity(satHeight);
-    double direction = atan2(0- satY, 0 - satX);
-    double accX = accGravity * sin(direction);
-    double accY = accGravity * cos(direction);
+    double direction = computeDirection(satX, satY);
+//    double direction = atan2(0- satY, 0 - satX);
+    double accX = calculateDDX(accGravity, direction);
+    double accY = calculateDDY(accGravity, direction);
+//    double accX = accGravity * sin(direction);
+//    double accY = accGravity * cos(direction);
 
     double prevDX = obj->getDx();
     double prevDY = obj->getDy();

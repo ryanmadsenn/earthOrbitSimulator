@@ -3,27 +3,37 @@
 /*******************************************************
  *
  *******************************************************/
-Simulator::Simulator() {
-//    for (int i = 0; i < 200; i++)
-//        stars.push_back(Star());
-//
-//    earth = Earth();
-//
-//    for (int i = 0; i < 6; i++) {
-//        orbitingObjects.push_back(new GPS());
-//    }
-//
-//    orbitingObjects.push_back(new Sputnik());
-//    orbitingObjects.push_back(new Hubble());
-//    orbitingObjects.push_back(new Starlink());
-//    orbitingObjects.push_back(new CrewDragon());
-//    orbitingObjects.push_back(new DreamChaser());
+Simulator::Simulator(const Position ptUpperRight) {
+    initialize();
 }
 
 /*******************************************************
  *
  *******************************************************/
-void Simulator::initialize() {};
+void Simulator::initialize()
+{
+    /* create 200 stars */
+    for (int i = 0; i < 200; i++)
+        stars.push_back(Star(Position(random(-99999999.0, 99999999.0), random(-99999999.0, 99999999.0)), random(0, 224)));
+
+    /* create earth */
+    earth = Earth();
+
+    /* create 6 gps satellites */
+    orbitingObjects.push_back(new GPS(Position(0.0, 26560000.0), -3880.0, 0.0, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position(23001634.72, 13280000.0), -1940.0, 3360.18, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position(23001634.72, -13280000.0), 1940.0, -3360.18, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position(0.0, -26560000.0),3880.0, 0.0, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position(-23001634.72, -13280000.0), 1940.0, -3360.18, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position(-23001634.72, 13280000.0), -1940.0, -3360.18, 0.0, 12.0));
+
+    /* create 5 other orbiting objects */
+    orbitingObjects.push_back(new Sputnik(Position(-36515095.13, 21082000.0), 2050.0, 2684.68, 0.0, 4.0));
+    orbitingObjects.push_back(new Hubble(Position(0.0, 42164000.0), 3100.0, 0.0, 0.0, 10.0));
+    orbitingObjects.push_back(new Starlink(Position(0.0, -13020000.0), 5800.0, 0.0, 0.0, 6.0));
+    orbitingObjects.push_back(new CrewDragon(Position(0.0, 8000000.0), -7900.0, 0.0, 0.0, 7.0));
+    orbitingObjects.push_back(new DreamChaser(Position(-45000000.0, 45000000.0),0.0, -2000,0.0, 10.0));
+};
 
 /*******************************************************
  *
@@ -36,16 +46,17 @@ void Simulator::update() {
 
 /*******************************************************
  *
+ * @param pUI
  *******************************************************/
 void Simulator::handleInput() {
-//    if (pUI->isSpace())
-//        projectiles.push_back(Projectile(dreamChaser.getDX(), dreamChaser.getDY()));
-//    else if (pUI->isLeft())
-//        dreamChaser.rotateLeft();
-//    else if (pUI->isRight())
-//        dreamChaser.rotateRight();
-//    else if (pUI->isDown())
-//        dreamChaser.accelerate();
+    if (pUI->isSpace())
+        dreamChaser.shoot();
+    else if (pUI->isLeft())
+        dreamChaser.rotateLeft();
+    else if (pUI->isRight())
+        dreamChaser.rotateRight();
+    else if (pUI->isDown())
+        dreamChaser.accelerate();
 }
 
 /*******************************************************
@@ -105,14 +116,14 @@ void Simulator::clearOrbitingObjects() {
  *
  *******************************************************/
 void Simulator::draw() {
-//    for (int i = 0; i < stars.size(); i++)
-//        stars[i].draw();
-//
-//    earth.draw();
+    for (int i = 0; i < stars.size(); i++)
+        stars[i].draw();
 
-//    for (int i = 0; i < orbitingObjects.size(); i++) {
-//        orbitingObjects[i]->draw();
-//    }
+    earth.draw();
+
+    for (int i = 0; i < orbitingObjects.size(); i++) {
+        orbitingObjects[i]->draw();
+    }
 //
 //    for (int i = 0; i < projectiles.size(); i++) {
 //        projectiles[i].draw();
@@ -124,8 +135,8 @@ void Simulator::draw() {
  *******************************************************/
 void Simulator::updateObjects()
 {
-    // Update earth's rotation but keep position the same.
-//    earth.updateAngle(computeRotationSpeed());
+    earth.updateAngle(-(2.0 * M_PI / 60.0) * (1440.0 / 86400.0));
+
 };
 
 

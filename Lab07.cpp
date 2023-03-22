@@ -25,6 +25,8 @@
 #include "uiDraw/uiDraw.h"     // for RANDOM and DRAW*
 #include "position/position.h"      // for POINT
 #include "tests/test.h"
+#include "simulator/simulator.h"
+
 using namespace std;
 
 /*************************************************************************
@@ -34,8 +36,7 @@ using namespace std;
 class Demo
 {
 public:
-   Demo(Position ptUpperRight) :
-      ptUpperRight(ptUpperRight)
+   Demo(Position ptUpperRight) : ptUpperRight(ptUpperRight)
    {
 //      ptHubble.setPixelsX(ptUpperRight.getPixelsX() * random(-0.5, 0.5));
 //      ptHubble.setPixelsY(ptUpperRight.getPixelsY() * random(-0.5, 0.5));
@@ -101,11 +102,13 @@ void callBack(const Interface* pUI, void* p)
 {
    // the first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in OpenGL. 
-   Demo* pDemo = (Demo*)p;
+   //Demo* pDemo = (Demo*)p;
+   Simulator* pSim = (Simulator*)p;
 
    //
    // accept input
    //
+    pSim->handleInput();
 
    // move by a little
 //   if (pUI->isUp())
@@ -126,48 +129,49 @@ void callBack(const Interface* pUI, void* p)
 //    double multiplier = 0.5;
 
     // Move the GPS.
-    double satX = pDemo->ptGPS.getMetersX();
-    double satY = pDemo->ptGPS.getMetersY();
-    double gravSeaLevel = 9.80665;
-    double earthRadius = 6378000;
-
-    double satHeight = sqrt(pow(satX, 2) + pow(satY, 2)) - earthRadius;
-    double accGrav = (gravSeaLevel * pow((earthRadius / (earthRadius + satHeight)), 2));
-    double direction = atan2(0 - satX, 0 - satY);
-    double accX = accGrav * sin(direction);
-    double accY = accGrav * cos(direction);
-
-    double time = 24;
-
-    double prevDX = pDemo->gpsDX;
-    double prevDY = pDemo->gpsDY;
-    pDemo->gpsDX = pDemo->gpsDX + accX * time;
-    pDemo->gpsDY = pDemo->gpsDY + accY * time;
-
-    double xFromPrev = pDemo->ptGPS.getMetersX() + prevDX * time + 0.5 * accX * pow(time, 2);
-    double yFromPrev = pDemo->ptGPS.getMetersY() + prevDY * time + 0.5 * accY * pow(time, 2);
-    double xFromCurr = pDemo->ptGPS.getMetersX() + pDemo->gpsDX * time + 0.5 * accX * pow(time, 2);
-    double yFromCurr = pDemo->ptGPS.getMetersY() + pDemo->gpsDY * time + 0.5 * accY * pow(time, 2);
-
-    double xBetween = (xFromPrev + xFromCurr) / 2;
-    double yBetween = (yFromPrev + yFromCurr) / 2;
-
-    pDemo->ptGPS.setMetersX(xBetween);
-    pDemo->ptGPS.setMetersY(yBetween);
-
-    double hypotenuse = sqrt(pow(pDemo->ptGPS.getMetersX(), 2) + pow(pDemo->ptGPS.getMetersY(), 2));
-
-    double angle = asin(pDemo->ptGPS.getMetersY() / hypotenuse);
-//    cout << "Angle: " << angle << endl;
-
-    pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
-    pDemo->angleShip = angle;
+//    double satX = pDemo->ptGPS.getMetersX();
+//    double satY = pDemo->ptGPS.getMetersY();
+//    double gravSeaLevel = 9.80665;
+//    double earthRadius = 6378000;
+//
+//    double satHeight = sqrt(pow(satX, 2) + pow(satY, 2)) - earthRadius;
+//    double accGrav = (gravSeaLevel * pow((earthRadius / (earthRadius + satHeight)), 2));
+//    double direction = atan2(0 - satX, 0 - satY);
+//    double accX = accGrav * sin(direction);
+//    double accY = accGrav * cos(direction);
+//
+//    double time = 24;
+//
+//    double prevDX = pDemo->gpsDX;
+//    double prevDY = pDemo->gpsDY;
+//    pDemo->gpsDX = pDemo->gpsDX + accX * time;
+//    pDemo->gpsDY = pDemo->gpsDY + accY * time;
+//
+//    double xFromPrev = pDemo->ptGPS.getMetersX() + prevDX * time + 0.5 * accX * pow(time, 2);
+//    double yFromPrev = pDemo->ptGPS.getMetersY() + prevDY * time + 0.5 * accY * pow(time, 2);
+//    double xFromCurr = pDemo->ptGPS.getMetersX() + pDemo->gpsDX * time + 0.5 * accX * pow(time, 2);
+//    double yFromCurr = pDemo->ptGPS.getMetersY() + pDemo->gpsDY * time + 0.5 * accY * pow(time, 2);
+//
+//    double xBetween = (xFromPrev + xFromCurr) / 2;
+//    double yBetween = (yFromPrev + yFromCurr) / 2;
+//
+//    pDemo->ptGPS.setMetersX(xBetween);
+//    pDemo->ptGPS.setMetersY(yBetween);
+//
+//    double hypotenuse = sqrt(pow(pDemo->ptGPS.getMetersX(), 2) + pow(pDemo->ptGPS.getMetersY(), 2));
+//
+//    double angle = asin(pDemo->ptGPS.getMetersY() / hypotenuse);
+////    cout << "Angle: " << angle << endl;
+//
+//    pDemo->angleEarth += -(2.0 * M_PI / 60.0) * (1440.0 / 86400.0);
+//    pDemo->angleShip = angle;
 
    //
    // draw everything
    //
+   pSim->draw();
 
-   Position pt;
+//   Position pt;
 
    // draw satellites
 //   drawCrewDragon(pDemo->ptCrewDragon, pDemo->angleShip);
@@ -175,7 +179,7 @@ void callBack(const Interface* pUI, void* p)
 //   drawSputnik   (pDemo->ptSputnik,    pDemo->angleShip);
 //   drawStarlink  (pDemo->ptStarlink,   pDemo->angleShip);
 //   drawShip      (pDemo->ptShip,       pDemo->angleShip, pUI->isSpace());
-   drawGPS       (pDemo->ptGPS,        pDemo->angleShip);
+//   drawGPS       (pDemo->ptGPS,        pDemo->angleShip);
 
    // draw parts
 //   pt.setPixelsX(pDemo->ptCrewDragon.getPixelsX() + 20);
@@ -203,15 +207,15 @@ void callBack(const Interface* pUI, void* p)
 //   drawStar(pDemo->ptStar, pDemo->phaseStar);
 
     // draw the stars
-    for (auto it = pDemo->stars.begin(); it != pDemo->stars.end(); ++it)
-    {
-        drawStar(it->first, it->second);
-        it->second++;
-    }
+//    for (auto it = pDemo->stars.begin(); it != pDemo->stars.end(); ++it)
+//    {
+//        drawStar(it->first, it->second);
+//        it->second++;
+//    }
 
    // draw the earth
-   pt.setMeters(0.0, 0.0);
-   drawEarth(pt, pDemo->angleEarth);
+//   pt.setMeters(0.0, 0.0);
+//   drawEarth(pt, pDemo->angleEarth);
 }
 
 double Position::metersFromPixels = 40.0;
@@ -237,16 +241,15 @@ int main(int argc, char** argv)
     ptUpperRight.setZoom(128000.0 /* 128km equals 1 pixel */);
     ptUpperRight.setPixelsX(1000.0);
     ptUpperRight.setPixelsY(1000.0);
-    Interface ui(0, NULL,
-      "Demo",   /* name on the window */
-      ptUpperRight);
+    Interface ui(0, nullptr,"Demo",   /* name on the window */ptUpperRight);
     ui.setFramesPerSecond(60);
 
     // Initialize the demo
-    Demo demo(ptUpperRight);
+    // Demo demo(ptUpperRight);
+    Simulator simulator(ptUpperRight);
 
     // set everything into action
-    ui.run(callBack, &demo);
+    ui.run(callBack, &simulator);
 
     return 0;
 }

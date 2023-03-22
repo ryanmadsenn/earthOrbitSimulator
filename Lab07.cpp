@@ -124,6 +124,7 @@ void callBack(const Interface* pUI, void* p)
    //
    // perform all the game logic
    //
+   pSim->update();
 
     // rotate the earth
 //    double multiplier = 0.5;

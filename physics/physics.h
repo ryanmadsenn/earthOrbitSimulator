@@ -1,11 +1,9 @@
 
 
 #pragma once
+
 #include "orbitingObject/orbitingObject.h"
 #include <cmath>
-#include <math.h>
-#include <vector>
-#include <map>
 
 #define _USE_MATH_DEFINES
 #define STANDARD_GRAVITY 9.80665
@@ -17,10 +15,10 @@
 #define TIME 24
 
 // Important computations
-double computeTimeDilation()	{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
-double computeTimePerFrame()	{ return computeTimeDilation() * FRAME_RATE; }
-double computeSecPerDay()       { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
-double computeRotationSpeed()   { return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
+inline double computeTimeDilation()	{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
+inline double computeTimePerFrame()	{ return computeTimeDilation() * FRAME_RATE; }
+inline double computeSecPerDay()       { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
+inline double computeRotationSpeed()   { return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
 
 /*******************************************************
  *
@@ -28,7 +26,7 @@ double computeRotationSpeed()   { return -(((2 * M_PI) / FRAME_RATE) * (computeT
  * @param satY
  * @return
  ********************************************************/
-double computeSatHeight(double satX, double satY)
+inline double computeSatHeight(double satX, double satY)
 {
     return (sqrt(pow(satX, 2) + pow(satY, 2)) - EARTH_RADIUS);
 }
@@ -41,7 +39,7 @@ double computeSatHeight(double satX, double satY)
  * @param ptOrbitingObject
  * @return distance from the earth
  *********************************************************/
-double computeAltitude(Position& ptOrbitingObject)
+inline double computeAltitude(Position& ptOrbitingObject)
 {
     double distance = computeDistance(Position(), ptOrbitingObject);
     return distance - EARTH_RADIUS;
@@ -52,7 +50,7 @@ double computeAltitude(Position& ptOrbitingObject)
  * @param satHeight
  * @return
  *****************************************************/
-double getGravity(double satHeight)
+inline double getGravity(double satHeight)
 {
     return (STANDARD_GRAVITY * pow((EARTH_RADIUS / (EARTH_RADIUS + satHeight)), 2));
 }
@@ -63,7 +61,7 @@ double getGravity(double satHeight)
  * @param ptOrbitingObject
  * @return
  ******************************************************/
-double getGravity(Position& ptOrbitingObject)
+inline double getGravity(Position& ptOrbitingObject)
 {
     double altitude = computeAltitude(ptOrbitingObject);
     double tmp = EARTH_RADIUS / (EARTH_RADIUS + altitude);
@@ -76,7 +74,7 @@ double getGravity(Position& ptOrbitingObject)
  * @param acceleration
  * @param time
  ******************************************************/
-void updateVelocity(OrbitingObject& orbitingObject, double acceleration)
+inline void updateVelocity(OrbitingObject& orbitingObject, double acceleration)
 {
     orbitingObject.setDx(orbitingObject.getDx() + (acceleration * TIME));
     orbitingObject.setDy(orbitingObject.getDy() + (acceleration * TIME));
@@ -88,7 +86,7 @@ void updateVelocity(OrbitingObject& orbitingObject, double acceleration)
  * @param direction
  * @return
  ******************************************************/
-double calculateDDX(double accGravity, double direction)
+inline double calculateDDX(double accGravity, double direction)
 {
     return accGravity * sin(direction);
 }
@@ -99,7 +97,7 @@ double calculateDDX(double accGravity, double direction)
  * @param direction
  * @return
  ******************************************************/
-double calculateDDY(double accGravity, double direction)
+inline double calculateDDY(double accGravity, double direction)
 {
     return accGravity * cos(direction);
 }
@@ -110,7 +108,7 @@ double calculateDDY(double accGravity, double direction)
  * @param ptY
  * @return
  *******************************************************/
-double computeDirection(double ptX, double ptY)
+inline double computeDirection(double ptX, double ptY)
 {
     return atan2(0 - ptY, 0 - ptX);
 }
@@ -122,7 +120,7 @@ double computeDirection(double ptX, double ptY)
  * @param acceleration
  * @return
  ********************************************************/
-double calculateNewPosition(double position, double velocity, double acceleration)
+inline double calculateNewPosition(double position, double velocity, double acceleration)
 {
     return position + velocity * TIME + 0.5 * acceleration * pow(TIME, 2);
 }
@@ -133,7 +131,7 @@ double calculateNewPosition(double position, double velocity, double acceleratio
  * @param velocity
  * @param acceleration
  *******************************************************/
-void updatePosition(OrbitingObject& orbitingObject, double velocity, double acceleration)
+inline void updatePosition(OrbitingObject& orbitingObject, double velocity, double acceleration)
 {
     Position *pt = orbitingObject.getPosition();
     pt->addMetersX(velocity * TIME + 0.5 * acceleration * pow(TIME, 2));
@@ -145,7 +143,7 @@ void updatePosition(OrbitingObject& orbitingObject, double velocity, double acce
  *
  * @param obj
  *******************************************************/
-void applyPhysics(OrbitingObject * obj)
+inline void applyPhysics(OrbitingObject * obj)
 {
     double satX = obj->getPosition()->getMetersX();
     double satY = obj->getPosition()->getMetersY();

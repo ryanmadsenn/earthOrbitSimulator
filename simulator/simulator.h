@@ -14,6 +14,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "../physics/physics.h"
 
 using namespace std;
 

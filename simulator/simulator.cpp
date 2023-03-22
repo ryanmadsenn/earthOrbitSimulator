@@ -135,8 +135,11 @@ void Simulator::draw() {
  *******************************************************/
 void Simulator::updateObjects()
 {
+    // This hard coded value needed to come from physics.computeRotationSpeed()
     earth.updateAngle(-(2.0 * M_PI / 60.0) * (1440.0 / 86400.0));
-
+    for (int i = 0; i < orbitingObjects.size(); i++) {
+        applyPhysics(orbitingObjects[i]);
+    }
 };
 
 

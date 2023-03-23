@@ -1,4 +1,4 @@
-#include "orbitingObject/orbitingObject.h"
+#include "../orbitingObject/orbitingObject.h"
 
 /*******************************************************
  *

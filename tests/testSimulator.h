@@ -1,10 +1,10 @@
 #pragma once
-#include "simulator/fakeSimulator.h"
-#include "orbitingObject/satellite/gps/gps.h"
-#include "orbitingObject/satellite/hubble/hubble.h"
-#include "orbitingObject/satellite/sputnik/sputnik.h"
-#include "orbitingObject/satellite/starlink/starlink.h"
-#include "orbitingObject/satellite/crewDragon/crewDragon.h"
+#include "../simulator/fakeSimulator.h"
+#include "../orbitingObject/satellite/gps/gps.h"
+#include "../orbitingObject/satellite/hubble/hubble.h"
+#include "../orbitingObject/satellite/sputnik/sputnik.h"
+#include "../orbitingObject/satellite/starlink/starlink.h"
+#include "../orbitingObject/satellite/crewDragon/crewDragon.h"
 #include <cassert>
 
 using namespace std;

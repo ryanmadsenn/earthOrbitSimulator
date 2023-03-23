@@ -20,20 +20,20 @@ void Simulator::initialize()
     earth = Earth();
 
     /* create 6 gps satellites */
-    orbitingObjects.push_back(new GPS(Position(0.0, 26560000.0), -3880.0, 0.0, 0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position(23001634.72, 13280000.0), -1940.0, 3360.18, 0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position(23001634.72, -13280000.0), 1940.0, -3360.18, 0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position(0.0, -26560000.0),3880.0, 0.0, 0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position(-23001634.72, -13280000.0), 1940.0, -3360.18, 0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position(-23001634.72, 13280000.0), -1940.0, -3360.18, 0.0, 12.0));
-
+    orbitingObjects.push_back(new GPS(Position( 0.0,          26560000.0  ), -3880.0,  0.0,      0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position( 23001634.72,  13280000.0  ), -1940.0,  3360.18,  0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position( 23001634.72,  -13280000.0 ),  1940.0,  3360.18,  0.0, 12.0)); 
+    orbitingObjects.push_back(new GPS(Position( 0.0,          -26560000.0 ),  3880.0,  0.0,      0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position( -23001634.72, -13280000.0 ),  1940.0,  -3360.18, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position( -23001634.72, 13280000.0  ), -1940.0,  -3360.18, 0.0, 12.0));
+     
     /* create 5 other orbiting objects */
-    orbitingObjects.push_back(new Sputnik(Position(-36515095.13, 21082000.0), 2050.0, 2684.68, 0.0, 4.0));
-    orbitingObjects.push_back(new Hubble(Position(0.0, 42164000.0), 3100.0, 0.0, 0.0, 10.0));
-    orbitingObjects.push_back(new Starlink(Position(0.0, -13020000.0), 5800.0, 0.0, 0.0, 6.0));
-    orbitingObjects.push_back(new CrewDragon(Position(0.0, 8000000.0), -7900.0, 0.0, 0.0, 7.0));
-    orbitingObjects.push_back(new DreamChaser(Position(-45000000.0, 45000000.0),0.0, -2000,0.0, 10.0));
-};
+    orbitingObjects.push_back(new Sputnik      (Position(-36515095.13, 21082000.0),  2050.0,  2684.68, 0.0, 4.0));
+    orbitingObjects.push_back(new Hubble       (Position(0.0,          42164000.0),  3100.0,  0.0,     0.0, 10.0));
+    orbitingObjects.push_back(new Starlink     (Position(0.0,         -13020000.0),  5800.0,  0.0,     0.0, 6.0));
+    orbitingObjects.push_back(new CrewDragon   (Position(0.0,           8000000.0),  -7900.0, 0.0,     0.0, 7.0));
+    orbitingObjects.push_back(new DreamChaser  (Position(-45000000.0,  45000000.0),  0.0,     -2000,   0.0, 10.0));
+};  
 
 /*******************************************************
  *
@@ -74,6 +74,7 @@ bool Simulator::checkForCollisions() {
 //            }
 //        }
 //    }
+    return false;
 }
 
 /*******************************************************

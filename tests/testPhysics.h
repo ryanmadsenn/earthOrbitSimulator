@@ -9,8 +9,8 @@
 
 #pragma once
 
-#include "physics/physics.h"
-#include "position/dummyPosition.h"
+#include "../physics/physics.h"
+#include "../position/dummyPosition.h"
 #include <cassert>
 #include <cmath>
 #define _USE_MATH_DEFINES

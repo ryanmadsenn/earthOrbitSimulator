@@ -2,10 +2,12 @@
 
 #pragma once
 
-#include "orbitingObject/orbitingObject.h"
+#include "../orbitingObject/orbitingObject.h"
 #include <cmath>
 
 #define _USE_MATH_DEFINES
+#include <math.h> // for windows
+
 #define STANDARD_GRAVITY 9.80665
 #define EARTH_RADIUS 6378000
 #define FRAME_RATE 30
@@ -149,13 +151,13 @@ inline void applyPhysics(OrbitingObject * obj)
     double satY = obj->getPosition()->getMetersY();
     double satHeight = computeSatHeight(satX, satY);
     double accGravity = getGravity(satHeight);
-    double direction = computeDirection(satX, satY);
-//    double direction = atan2(0- satY, 0 - satX);
-    double accX = calculateDDX(accGravity, direction);
-    double accY = calculateDDY(accGravity, direction);
-//    double accX = accGravity * sin(direction);
-//    double accY = accGravity * cos(direction);
-
+//    double direction = computeDirection(satX, satY);
+    double direction = atan2(0 - satX, 0 - satY);
+    //double accX = calculateDDX(accGravity, direction);
+    //double accY = calculateDDY(accGravity, direction);
+    double accX = accGravity * sin(direction);
+    double accY = accGravity * cos(direction);
+    
     double prevDX = obj->getDx();
     double prevDY = obj->getDy();
     obj->setDx(obj->getDx() + accX * TIME);

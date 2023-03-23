@@ -1,5 +1,5 @@
 #pragma once
-#include "orbitingObject/satellite/satellite.h"
+#include "../satellite.h"
 
 class Hubble : public Satellite {
 public:

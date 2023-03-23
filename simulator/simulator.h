@@ -25,7 +25,7 @@ protected:
     DreamChaser dreamChaser;
     vector<OrbitingObject*> orbitingObjects;
     vector<Projectile> projectiles;
-    Interface *pUI{};
+//    Interface *pUI;
 
 public:
     Simulator() = default;
@@ -35,7 +35,7 @@ public:
 
     void update();
 
-    void handleInput();
+    void handleInput(const Interface *pUI);
 
     virtual bool checkForCollisions();
 

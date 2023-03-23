@@ -2,8 +2,6 @@
 
 #include "../uiDraw/uiDraw.h"
 
-using namespace std;
-
 class Star
 {
 private:
@@ -13,6 +11,5 @@ private:
 
 public:
     Star(Position ptStar, unsigned char phase);
-    void reset(Position& pt);
-    void draw() { drawStar(ptStar, phase); };
+    void draw() { drawStar(ptStar, phase++); }
 };

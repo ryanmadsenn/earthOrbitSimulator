@@ -39,7 +39,7 @@ void Simulator::initialize()
  *
  *******************************************************/
 void Simulator::update() {
-    handleInput();
+//    handleInput(pUI);
     checkForCollisions();
     updateObjects();
 }
@@ -48,15 +48,8 @@ void Simulator::update() {
  *
  * @param pUI
  *******************************************************/
-void Simulator::handleInput() {
-    if (pUI->isSpace())
-        dreamChaser.shoot();
-    else if (pUI->isLeft())
-        dreamChaser.rotateLeft();
-    else if (pUI->isRight())
-        dreamChaser.rotateRight();
-    else if (pUI->isDown())
-        dreamChaser.accelerate();
+void Simulator::handleInput(const Interface *pUI) {
+    dreamChaser.input(pUI);
 }
 
 /*******************************************************
@@ -66,7 +59,8 @@ void Simulator::handleInput() {
 bool Simulator::checkForCollisions() {
 //    for (int i = 0; i < orbitingObjects.size(); i++) {
 //        for (int j = 0; j < orbitingObjects.size(); j++) {
-//            distance = sqrt(pow(orbitingObjects[i]->getX() - orbitingObjects[j]->getX(), 2) +
+//            if (orbitingObjects[i].isAlive() && orbitingObjects[j].isAlive())
+//                distance = sqrt(pow(orbitingObjects[i]->getX() - orbitingObjects[j]->getX(), 2) +
 //                            pow(orbitingObjects[i]->getY() - orbitingObjects[j]->getY(), 2));
 //
 //            if (distance < orbitingObjects[i]->getRadius() + orbitingObjects[j]->getRadius()) {
@@ -137,7 +131,7 @@ void Simulator::draw() {
 void Simulator::updateObjects()
 {
     // This hard coded value needed to come from physics.computeRotationSpeed()
-    earth.updateAngle(-(2.0 * M_PI / 60.0) * (1440.0 / 86400.0));
+    earth.updateAngle(computeRotationSpeed());
     for (int i = 0; i < orbitingObjects.size(); i++) {
         applyPhysics(orbitingObjects[i]);
     }

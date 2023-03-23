@@ -151,10 +151,7 @@ inline void applyPhysics(OrbitingObject * obj)
     double satY = obj->getPosition()->getMetersY();
     double satHeight = computeSatHeight(satX, satY);
     double accGravity = getGravity(satHeight);
-//    double direction = computeDirection(satX, satY);
     double direction = atan2(0 - satX, 0 - satY);
-    //double accX = calculateDDX(accGravity, direction);
-    //double accY = calculateDDY(accGravity, direction);
     double accX = accGravity * sin(direction);
     double accY = accGravity * cos(direction);
     

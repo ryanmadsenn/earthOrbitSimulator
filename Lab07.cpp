@@ -108,7 +108,7 @@ void callBack(const Interface* pUI, void* p)
    //
    // accept input
    //
-    pSim->handleInput();
+    pSim->handleInput(pUI);
 
    // move by a little
 //   if (pUI->isUp())

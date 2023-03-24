@@ -9,6 +9,8 @@
  ********************************************************/
 DreamChaser::DreamChaser(Position position, double dx, double dy, double aRadians, double radius) {
     initialize(position, dx, dy, aRadians, radius, "DreamChaser");
+    velocityObject.setVelocity(dx, dy);
+    directionObject.setDirection(dx, dy);
     computeShipFront();
 }
 
@@ -36,15 +38,15 @@ void DreamChaser::computeShipFront()
     shipFront.addPixelsY(19.0 * cosA - 0.0 * sinA);
 }
 
-//void DreamChaser::fireProjectile()
-//{
-//    // Velocity of the DreamChaser need to be added to the initial velocity of the projectile.
-//    double initialVelocity = 9000.0;
-//    double finalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + initialVelocity;
-//
-//    projectile.reset(getShipFront(), aRadians, finalVelocity);
-//    projectile.draw();
-//}
+void DreamChaser::fireProjectile()
+{
+    // Velocity of the DreamChaser need to be added to the initial velocity of the projectile.
+    double initialVelocity = 9000.0;
+    double finalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + initialVelocity;
+
+    projectile.reset(getShipFront(), aRadians, finalVelocity);
+    projectile.draw();
+}
 
 /*******************************************************
  *
@@ -52,4 +54,19 @@ void DreamChaser::computeShipFront()
  ********************************************************/
 void DreamChaser::smash(vector<OrbitingObject *> orbitingObjects) {
     // TODO: Implement this method.
+}
+
+void DreamChaser::input(const Interface* pUI)
+{
+    // get user input
+    directionObject.rotate(pUI->isRight() ? 0.1 : 0.0 + pUI->isLeft() ? -0.1 : 0.0);
+
+    if (pUI->isDown())
+    {
+        Acceleration acceleration(30, directionObject.getRadians());
+        velocityObject += acceleration;
+    }
+
+    if (pUI->isSpace())
+        fireProjectile();
 }

@@ -1,5 +1,6 @@
 #include "../orbitingObject.h"
-//#include "../../projectile/projectile.h"
+#include "../../projectile/projectile.h"
+#include "../../thrust/thrust.h"
 
 class DreamChaser : public OrbitingObject {
 private:
@@ -8,7 +9,7 @@ private:
     bool clockWise = false;
     bool counterClockWise = false;
     Position shipFront;
-//    Projectile projectile;
+    Projectile projectile;
 
 public:
     DreamChaser() : OrbitingObject() {};
@@ -21,6 +22,10 @@ public:
     virtual void smash(vector<OrbitingObject *> orbitingObjects) override;
     void computeShipFront();
     Position& getShipFront() { return shipFront; }
-//    void fireProjectile();
+    void fireProjectile();
 //    Projectile* getProjectile() { return &projectile; }
+
+    void move(const Interface* pUI);
+
+    void input(const Interface* pUI);
 };

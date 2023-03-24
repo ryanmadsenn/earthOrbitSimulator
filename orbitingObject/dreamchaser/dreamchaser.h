@@ -1,6 +1,6 @@
 #include "../orbitingObject.h"
 #include "../../projectile/projectile.h"
-#include "../../thrust/thrust.h"
+#include "uiInteract/uiInteract.h"
 
 class DreamChaser : public OrbitingObject {
 private:

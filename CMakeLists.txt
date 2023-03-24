@@ -41,4 +41,10 @@ add_executable(
         star/star.cpp
         projectile/projectile.cpp
         direction/direction.h
-        direction/direction.cpp)
+        direction/direction.cpp
+        thrust/thrust.cpp
+        thrust/thrust.h
+        velocity/velocity.cpp
+        velocity/velocity.h
+        acceleration/acceleration.cpp
+        acceleration/acceleration.h)

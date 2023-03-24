@@ -64,14 +64,6 @@ string OrbitingObject::getType() {
 
 /*******************************************************
  *
- * @param position
- ********************************************************/
-void OrbitingObject::setPosition(Position position) {
-    this->position = position;
-}
-
-/*******************************************************
- *
  * @param dx
  *******************************************************/
 void OrbitingObject::setDx(double dx) {

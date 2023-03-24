@@ -9,8 +9,8 @@
  ********************************************************/
 DreamChaser::DreamChaser(Position position, double dx, double dy, double aRadians, double radius) {
     initialize(position, dx, dy, aRadians, radius, "DreamChaser");
-    velocityObject.setVelocity(dx, dy);
-    directionObject.setDirection(dx, dy);
+//    velocityObject.setVelocity(dx, dy);
+//    directionObject.setDirection(dx, dy);
     computeShipFront();
 }
 

@@ -25,11 +25,13 @@ protected:
     DreamChaser dreamChaser;
     vector<OrbitingObject*> orbitingObjects;
     vector<Projectile> projectiles;
-//    Interface *pUI;
+    Interface const *pUI;
+    Position const *ptUpperRight;
 
 public:
     Simulator() = default;
-    Simulator(const Position ptUpperRight);
+
+    Simulator(const Position *ptUpperRight, const Interface *pUI);
 
     virtual void initialize();
 

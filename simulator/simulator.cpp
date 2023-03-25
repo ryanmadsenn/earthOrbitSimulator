@@ -3,7 +3,9 @@
 /*******************************************************
  *
  *******************************************************/
-Simulator::Simulator(const Position ptUpperRight) {
+Simulator::Simulator(const Position *ptUpperRight, const Interface *pUI) {
+    this->ptUpperRight = ptUpperRight;
+    this->pUI = pUI;
     initialize();
 }
 
@@ -12,14 +14,18 @@ Simulator::Simulator(const Position ptUpperRight) {
  *******************************************************/
 void Simulator::initialize()
 {
-    /* create 200 stars */
-    for (int i = 0; i < 200; i++)
-        stars.push_back(Star(Position(random(-99999999.0, 99999999.0), random(-99999999.0, 99999999.0)), random(0, 224)));
+    // Create 200 stars.
+    for (int i = 0; i < 200; i++) {
+        Position pt = Position();
+        pt.setPixelsX(ptUpperRight->getPixelsX() * random(-0.5, 0.5));
+        pt.setPixelsY(ptUpperRight->getPixelsY() * random(-0.5, 0.5));
+        stars.push_back(Star(pt, random(0, 224)));
+    }
 
-    /* create earth */
+    // Create the earth.
     earth = Earth();
 
-    /* create 6 gps satellites */
+    // Create 6 GPS satellites.
     orbitingObjects.push_back(new GPS(Position( 0.0,          26560000.0  ), -3880.0,  0.0,      0.0, 12.0));
     orbitingObjects.push_back(new GPS(Position( 23001634.72,  13280000.0  ), -1940.0,  3360.18,  0.0, 12.0));
     orbitingObjects.push_back(new GPS(Position( 23001634.72,  -13280000.0 ),  1940.0,  3360.18,  0.0, 12.0)); 
@@ -27,7 +33,7 @@ void Simulator::initialize()
     orbitingObjects.push_back(new GPS(Position( -23001634.72, -13280000.0 ),  1940.0,  -3360.18, 0.0, 12.0));
     orbitingObjects.push_back(new GPS(Position( -23001634.72, 13280000.0  ), -1940.0,  -3360.18, 0.0, 12.0));
      
-    /* create 5 other orbiting objects */
+    // Create 5 other orbiting objects.
     orbitingObjects.push_back(new Sputnik      (Position(-36515095.13, 21082000.0),  2050.0,  2684.68, 0.0, 4.0));
     orbitingObjects.push_back(new Hubble       (Position(0.0,          42164000.0),  3100.0,  0.0,     0.0, 10.0));
     orbitingObjects.push_back(new Starlink     (Position(0.0,         -13020000.0),  5800.0,  0.0,     0.0, 6.0));

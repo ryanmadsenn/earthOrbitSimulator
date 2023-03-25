@@ -242,12 +242,13 @@ int main(int argc, char** argv)
     ptUpperRight.setZoom(128000.0 /* 128km equals 1 pixel */);
     ptUpperRight.setPixelsX(1000.0);
     ptUpperRight.setPixelsY(1000.0);
-    Interface ui(0, nullptr,"Demo",   /* name on the window */ptUpperRight);
+
+    Interface ui(0, nullptr,"Orbital Simulator",   /* name on the window */ptUpperRight);
     ui.setFramesPerSecond(60);
 
     // Initialize the demo
     // Demo demo(ptUpperRight);
-    Simulator simulator(ptUpperRight);
+    Simulator simulator(&ptUpperRight, &ui);
 
     // set everything into action
     ui.run(callBack, &simulator);

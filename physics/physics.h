@@ -11,7 +11,7 @@
 
 #define STANDARD_GRAVITY 9.80665
 #define EARTH_RADIUS 6378000
-#define FRAME_RATE 60
+#define FRAME_RATE 30
 #define HOURS_PER_DAY 24
 #define MINUTES_PER_HOUR 60
 #define SECONDS_PER_MINUTE 60
@@ -19,7 +19,7 @@
 
 // Important computations
 inline double computeTimeDilation()	{ return HOURS_PER_DAY * MINUTES_PER_HOUR; }
-inline double computeTimePerFrame()	{ return computeTimeDilation() * FRAME_RATE; }
+inline double computeTimePerFrame()	{ return computeTimeDilation() / FRAME_RATE; }
 inline double computeSecPerDay()       { return HOURS_PER_DAY * MINUTES_PER_HOUR * SECONDS_PER_MINUTE; }
 inline double computeRotationSpeed()   { return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
 
@@ -79,8 +79,8 @@ inline double getGravity(Position& ptOrbitingObject)
  ******************************************************/
 inline void updateVelocity(OrbitingObject& orbitingObject, double acceleration)
 {
-    orbitingObject.setDx(orbitingObject.getDx() + (acceleration * TIME));
-    orbitingObject.setDy(orbitingObject.getDy() + (acceleration * TIME));
+    orbitingObject.setDx(orbitingObject.getDx() + (acceleration * computeTimePerFrame()));
+    orbitingObject.setDy(orbitingObject.getDy() + (acceleration * computeTimePerFrame()));
 }
 
 /******************************************************
@@ -137,8 +137,8 @@ inline double calculateNewPosition(double position, double velocity, double acce
 inline void updatePosition(OrbitingObject& orbitingObject, double velocity, double acceleration)
 {
     Position *pt = orbitingObject.getPosition();
-    pt->addMetersX(velocity * TIME + 0.5 * acceleration * pow(TIME, 2));
-    pt->addMetersY(velocity * TIME + 0.5 * acceleration * pow(TIME, 2));
+    pt->addMetersX(velocity * computeTimePerFrame() + 0.5 * acceleration * pow(computeTimePerFrame(), 2));
+    pt->addMetersY(velocity * computeTimePerFrame() + 0.5 * acceleration * pow(computeTimePerFrame(), 2));
     orbitingObject.setPosition(*pt);
 }
 

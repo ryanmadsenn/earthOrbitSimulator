@@ -47,4 +47,4 @@ add_executable(
         velocity/velocity.cpp
         velocity/velocity.h
         acceleration/acceleration.cpp
-        acceleration/acceleration.h orbitingObject/debris/debris.h orbitingObject/debris/debris.cpp)
+        acceleration/acceleration.h orbitingObject/debris/debris.h orbitingObject/debris/debris.cpp orbitingObject/debris/fragment/fragment.h orbitingObject/debris/fragment/fragment.cpp orbitingObject/debris/gpsCenter/gpsCenter.h orbitingObject/debris/gpsCenter/gpsCenter.cpp orbitingObject/debris/gpsLeft/gpsLeft.h orbitingObject/debris/gpsLeft/gpsLeft.cpp orbitingObject/debris/gpsRight/gpsRight.h orbitingObject/debris/gpsRight/gpsRight.cpp)

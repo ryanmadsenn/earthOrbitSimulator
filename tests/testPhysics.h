@@ -94,7 +94,6 @@ private:
 		assert(FRAME_RATE == 60);
 		assert(HOURS_PER_DAY == 24);
 		assert(MINUTES_PER_HOUR == 60);
-        cout << timePerframe << endl;
 		assert(timePerframe == 86400);
 
 		// TEARDOWN
@@ -111,7 +110,6 @@ private:
 		assert(FRAME_RATE == 60);
 		assert(HOURS_PER_DAY == 24);
 		assert(MINUTES_PER_HOUR == 60);
-        cout << rotationSpeed << endl;
 		assert(closeEnough(rotationSpeed, -0.00174533, 0.0001));
 		
 

@@ -23,6 +23,6 @@ void Sputnik::draw() {
  *
  * @param orbitingObjects
  *******************************************************/
-void Sputnik::smash(vector<OrbitingObject*> orbitingObjects) {
+void Sputnik::smash(vector<OrbitingObject*> * orbitingObjects) {
     // TODO: Implement this.
 }

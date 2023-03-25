@@ -23,6 +23,6 @@ void CrewDragon::draw() {
  *
  * @param orbitingObjects
  *******************************************************/
-void CrewDragon::smash(vector<OrbitingObject *> orbitingObjects) {
+void CrewDragon::smash(vector<OrbitingObject *> * orbitingObjects) {
     // TODO: Implement this method
 }

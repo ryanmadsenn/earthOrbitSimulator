@@ -57,6 +57,6 @@ Position DreamChaser::computeShipFront()
  *
  * @param orbitingObjects
  ********************************************************/
-void DreamChaser::smash(vector<OrbitingObject *> orbitingObjects) {
+void DreamChaser::smash(vector<OrbitingObject *> * orbitingObjects) {
     // TODO: Implement this method.
 }

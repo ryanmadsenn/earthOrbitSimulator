@@ -23,6 +23,10 @@ void GPS::draw() {
  *
  * @param orbitingObjects
  *******************************************************/
-void GPS::smash(vector<OrbitingObject *> orbitingObjects) {
-    // TODO: Implement this method
+void GPS::smash(vector<OrbitingObject *> * orbitingObjects) {
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new GPSCenter(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new GPSLeft(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new GPSRight(position, dx, dy, aRadians));
 }

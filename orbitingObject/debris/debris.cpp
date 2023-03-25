@@ -3,16 +3,24 @@
 //
 #include "debris.h"
 
-Debris::Debris(Position position, double velocity, double aRadians) {
-    double newVelocity = velocity + random(5000, 9000);
-    double newDX = newVelocity * sin(aRadians);
-    double newDY = newVelocity * cos(aRadians);
-    double newRadians = aRadians + random(-M_PI / 2, M_PI / 2);
-    position.setPixelsX(position.getPixelsX() + 4 * sin(newRadians));
-    position.setPixelsY(position.getPixelsY() + 4 * cos(newRadians));
+Debris::Debris(Position position, double dx, double dy, double aRadians, double radius, string type) {
+    initialize(position, dx, dy, aRadians, radius, type);
+    applyKick();
+    applyOffset();
+}
 
-//    initialize(position, newDX, newDY, newRadians);
+void Debris::applyKick() {
+    aRadians += random(-M_PI, M_PI);
+    double totalVeloctiy = sqrt(pow(dx, 2) + pow(dy, 2));
+    double kickedVelocity = totalVeloctiy + random(2500, 4500);
+    dx = kickedVelocity * sin(aRadians);
+    dy = kickedVelocity * cos(aRadians);
+}
 
+void Debris::applyOffset() {
+    double horizontalComp = radius * 2 * sin(aRadians);
+    double verticalComp = radius * 2 * cos(aRadians);
 
-    this->aRadians = aRadians;
+    position.setPixelsX(position.getPixelsX() + horizontalComp);
+    position.setPixelsY(position.getPixelsY() + verticalComp);
 }

@@ -20,5 +20,5 @@ public:
     void shoot(vector<Projectile *> * projectiles);
     Position computeShipFront();
     virtual void draw() override;
-    virtual void smash(vector<OrbitingObject *> orbitingObjects) override;
+    virtual void smash(vector<OrbitingObject *> * orbitingObjects) override;
 };

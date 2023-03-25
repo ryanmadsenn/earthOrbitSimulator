@@ -24,7 +24,7 @@ protected:
     bool alive = true;
 
 public:
-    ~OrbitingObject() {};
+    virtual ~OrbitingObject() = default;
     void initialize(Position position, double dx, double dy, double aRadians, double radius, string type);
     Position * getPosition();
     double getDx();
@@ -43,7 +43,7 @@ public:
     void setARadians(double aRadians);
     void setRadius(double radius);
     virtual void draw() = 0;
-    virtual void smash(vector<OrbitingObject *> orbitingObjects) = 0;
+    virtual void smash(vector<OrbitingObject *> * orbitingObjects) = 0;
 
     bool isDead() { return dead;}
     bool isAlive() { return alive;}

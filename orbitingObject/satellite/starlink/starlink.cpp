@@ -23,6 +23,6 @@ void Starlink::draw() {
  *
  * @param orbitingObjects
  *******************************************************/
-void Starlink::smash(vector<OrbitingObject *> orbitingObjects) {
+void Starlink::smash(vector<OrbitingObject *> * orbitingObjects) {
     // TODO: Implement this method
 }

@@ -102,7 +102,17 @@ bool Simulator::checkForCollisions() {
  * @param obj2index
  *******************************************************/
 void Simulator::handleCollision(OrbitingObject *pObj1, int obj1index, OrbitingObject *pObj2, int obj2index) {
-    cout << "Collision between " << pObj1->getType() << " and " << pObj2->getType() << endl;
+//    cout << "Collision between " << pObj1->getType() << " and " << pObj2->getType() << endl;
+    pObj1->smash(&orbitingObjects);
+    pObj2->smash(&orbitingObjects);
+
+    pObj1 = nullptr;
+    delete pObj1;
+    orbitingObjects.erase(orbitingObjects.begin() + obj1index);
+
+    pObj2 = nullptr;
+    delete pObj2;
+    orbitingObjects.erase(orbitingObjects.begin() + obj2index - 1);
 }
 
 /*******************************************************
@@ -154,8 +164,21 @@ void Simulator::updateObjects()
 {
     // This hard coded value needed to come from physics.computeRotationSpeed()
     earth.updateAngle(computeRotationSpeed());
+
     for (int i = 0; i < orbitingObjects.size(); i++) {
         applyPhysics(orbitingObjects[i]);
+
+        if (dynamic_cast<Fragment*>(orbitingObjects[i])) {
+            Fragment *pFragment = dynamic_cast<Fragment*>(orbitingObjects[i]);
+            pFragment->incrementAge();
+
+            if (pFragment->getAge() >= pFragment->getLifespan()) {
+                pFragment = nullptr;
+                delete pFragment;
+                orbitingObjects.erase(orbitingObjects.begin() + i);
+            }
+
+        }
     }
 
     for (int i = 0; i < projectiles.size(); i++) {

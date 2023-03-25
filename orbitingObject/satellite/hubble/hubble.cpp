@@ -23,6 +23,6 @@ void Hubble::draw() {
  *
  * @param orbitingObjects
  *******************************************************/
-void Hubble::smash(vector<OrbitingObject *> orbitingObjects) {
+void Hubble::smash(vector<OrbitingObject *> * orbitingObjects) {
     // TODO: Implement this method
 }

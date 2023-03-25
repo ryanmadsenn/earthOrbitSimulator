@@ -11,7 +11,7 @@ DreamChaser::DreamChaser(Position position, double dx, double dy, double aRadian
     initialize(position, dx, dy, aRadians, radius, "Dreamchaser");
 //    velocityObject.setVelocity(dx, dy);
 //    directionObject.setDirection(dx, dy);
-//    computeShipFront();
+    computeShipFront();
 }
 
 /*******************************************************
@@ -29,15 +29,29 @@ void DreamChaser::thrust() {
     isThrusting = true;
 }
 
-//void DreamChaser::fireProjectile()
-//{
-//    // Velocity of the DreamChaser need to be added to the initial velocity of the projectile.
-//    double initialVelocity = 9000.0;
-//    double finalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + initialVelocity;
-//
-//    projectile.reset(getShipFront(), aRadians, finalVelocity);
-//    projectile.draw();
-//}
+void DreamChaser::shoot(vector<Projectile *> * projectiles) {
+    double totalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + 9000.0;
+    double projDX = totalVelocity * sin(aRadians);
+    double projDY = totalVelocity * cos(aRadians);
+    auto projectile = new Projectile(computeShipFront(), aRadians, projDX, projDY);
+    projectiles->push_back(projectile);
+}
+
+Position DreamChaser::computeShipFront()
+{
+    // Because sine and cosine are expensive, we want to call them only once
+    double cosA = cos(aRadians);
+    double sinA = sin(aRadians);
+
+    // Start with our original point
+    Position shipFront = Position(position);
+
+    // Find the new values
+    shipFront.addPixelsX(0.0 * cosA + 19.0 * sinA);
+    shipFront.addPixelsY(19.0 * cosA - 0.0 * sinA);
+
+    return shipFront;
+}
 
 /*******************************************************
  *

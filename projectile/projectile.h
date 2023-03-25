@@ -9,20 +9,26 @@ class Projectile
 private:
     Position ptProjectile;
     double angleProjectile;
-    double velocity;
-    double projectileAge;
-    vector<Position> path;
+    double dx;
+    double dy;
+    int projectileAge;
 
 public:
     Projectile() {}
-    Projectile(Position ptProjectile, double angleProjectile, double velocity);
 
-    void reset(Position& pt, double angle, double velocity);
+    Projectile(Position ptProjectile, double angleProjectile, double dx, double dy);
 
-    // Setters
-    void setAngle(double angle) { angleProjectile = angle; }
+    double setPosition(Position pt) { ptProjectile = pt; };
 
-//    void move();
+    Position * getPosition() { return &ptProjectile; }
+
+    double getDX() { return dx; }
+
+    double getDY() { return dy; }
 
     void draw() { drawProjectile(ptProjectile); }
+
+    void incrementAge() { projectileAge++; }
+
+    int getAge() { return projectileAge; }
 };

@@ -178,3 +178,10 @@ inline void applyPhysics(OrbitingObject * obj)
 
     obj->setPosition(Position(xBetween, yBetween));
 }
+
+inline void applyProjectilePhysics(Projectile * projectile) {
+    double x = calculateNewPosition(projectile->getPosition()->getMetersX(), projectile->getDX(), 0);
+    double y = calculateNewPosition(projectile->getPosition()->getMetersY(), projectile->getDY(), 0);
+
+    projectile->setPosition(Position(x, y));
+}

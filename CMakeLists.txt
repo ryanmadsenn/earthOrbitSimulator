@@ -47,4 +47,4 @@ add_executable(
         velocity/velocity.cpp
         velocity/velocity.h
         acceleration/acceleration.cpp
-        acceleration/acceleration.h)
+        acceleration/acceleration.h orbitingObject/debris/debris.h orbitingObject/debris/debris.cpp)

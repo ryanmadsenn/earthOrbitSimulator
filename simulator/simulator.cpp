@@ -49,6 +49,7 @@ void Simulator::update() {
     handleInput();
     checkForCollisions();
     updateObjects();
+    draw();
 }
 
 /*******************************************************
@@ -59,6 +60,7 @@ void Simulator::handleInput() {
     if (pUI->isRight()) {
         dreamChaser->rotate(true);
     }
+
     if (pUI->isLeft()) {
         dreamChaser->rotate(false);
     }
@@ -68,6 +70,10 @@ void Simulator::handleInput() {
     } else {
         dreamChaser->stopThrust();
     }
+
+    if (pUI->isSpace()) {
+        dreamChaser->shoot(&projectiles);
+    }
 }
 
 /*******************************************************
@@ -75,17 +81,16 @@ void Simulator::handleInput() {
  * @return
  *******************************************************/
 bool Simulator::checkForCollisions() {
-//    for (int i = 0; i < orbitingObjects.size(); i++) {
-//        for (int j = 0; j < orbitingObjects.size(); j++) {
-//            if (orbitingObjects[i].isAlive() && orbitingObjects[j].isAlive())
-//                distance = sqrt(pow(orbitingObjects[i]->getX() - orbitingObjects[j]->getX(), 2) +
-//                            pow(orbitingObjects[i]->getY() - orbitingObjects[j]->getY(), 2));
-//
-//            if (distance < orbitingObjects[i]->getRadius() + orbitingObjects[j]->getRadius()) {
-//                handleCollision(orbitingObjects[i], i, orbitingObjects[j], j);
-//            }
-//        }
-//    }
+    for (int i = 0; i < orbitingObjects.size(); i++) {
+        for (int j = i + 1; j < orbitingObjects.size(); j++) {
+            double distance = computeDistancePixels(*orbitingObjects[i]->getPosition(), *orbitingObjects[j]->getPosition());
+
+            if (distance < orbitingObjects[i]->getRadius() + orbitingObjects[j]->getRadius()) {
+                handleCollision(orbitingObjects[i], i, orbitingObjects[j], j);
+                return true;
+            }
+        }
+    }
     return false;
 }
 
@@ -97,8 +102,7 @@ bool Simulator::checkForCollisions() {
  * @param obj2index
  *******************************************************/
 void Simulator::handleCollision(OrbitingObject *pObj1, int obj1index, OrbitingObject *pObj2, int obj2index) {
-//    obj1->break(orbitingObjects);
-//    obj2->break(orbitingObjects);
+    cout << "Collision between " << pObj1->getType() << " and " << pObj2->getType() << endl;
 }
 
 /*******************************************************
@@ -137,10 +141,10 @@ void Simulator::draw() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
         orbitingObjects[i]->draw();
     }
-//
-//    for (int i = 0; i < projectiles.size(); i++) {
-//        projectiles[i].draw();
-//    }
+
+    for (int i = 0; i < projectiles.size(); i++) {
+        projectiles[i]->draw();
+    }
 }
 
 /*******************************************************
@@ -152,6 +156,20 @@ void Simulator::updateObjects()
     earth.updateAngle(computeRotationSpeed());
     for (int i = 0; i < orbitingObjects.size(); i++) {
         applyPhysics(orbitingObjects[i]);
+    }
+
+    for (int i = 0; i < projectiles.size(); i++) {
+        applyProjectilePhysics(projectiles[i]);
+    }
+
+    for (int i = 0; i < projectiles.size(); i++) {
+        projectiles[i]->incrementAge();
+
+        if (projectiles[i]->getAge() >= 140) {
+            projectiles[i] = nullptr;
+            delete projectiles[i];
+            projectiles.erase(projectiles.begin() + i);
+        }
     }
 };
 

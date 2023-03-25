@@ -77,6 +77,12 @@ inline double computeDistance(const Position& pos1, const Position& pos2)
                (pos1.getMetersY() - pos2.getMetersY()) * (pos1.getMetersY() - pos2.getMetersY()));
 }
 
+inline double computeDistancePixels(const Position& pos1, const Position& pos2)
+{
+   return sqrt((pos1.getPixelsX() - pos2.getPixelsX()) * (pos1.getPixelsX() - pos2.getPixelsX()) +
+               (pos1.getPixelsY() - pos2.getPixelsY()) * (pos1.getPixelsY() - pos2.getPixelsY()));
+}
+
 // stream I/O useful for debugging
 std::ostream & operator << (std::ostream & out, const Position& pt);
 std::istream & operator >> (std::istream & in,        Position& pt);

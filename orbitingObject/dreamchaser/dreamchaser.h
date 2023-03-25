@@ -6,10 +6,8 @@
 class DreamChaser : public OrbitingObject {
 private:
     bool isThrusting = false;
-    bool isShooting = false;
-    bool clockWise = false;
-    bool counterClockWise = false;
-    Position shipFront;
+//    bool isShooting = false;
+//    Position shipFront;
     Projectile projectile;
 
 public:
@@ -19,7 +17,8 @@ public:
     void stopThrust() { isThrusting = false; }
     bool getIsThrusting() { return isThrusting; }
     void rotate(bool right);
-    void shoot() { isShooting = true; }
+    void shoot(vector<Projectile *> * projectiles);
+    Position computeShipFront();
     virtual void draw() override;
     virtual void smash(vector<OrbitingObject *> orbitingObjects) override;
 };

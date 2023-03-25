@@ -24,7 +24,7 @@ protected:
     Earth earth;
     DreamChaser * dreamChaser;
     vector<OrbitingObject*> orbitingObjects;
-    vector<Projectile> projectiles;
+    vector<Projectile*> projectiles;
     Interface const *pUI;
     Position const *ptUpperRight;
 

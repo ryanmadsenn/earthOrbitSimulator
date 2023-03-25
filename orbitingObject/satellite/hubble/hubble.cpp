@@ -24,5 +24,8 @@ void Hubble::draw() {
  * @param orbitingObjects
  *******************************************************/
 void Hubble::smash(vector<OrbitingObject *> * orbitingObjects) {
-
+    orbitingObjects->push_back(new HubbleTelescope(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new HubbleComputer(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new HubbleLeft(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new HubbleRight(position, dx, dy, aRadians));
 }

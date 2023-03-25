@@ -5,6 +5,7 @@ class Earth
 private:
     Position ptEarth;
     double angleEarth;
+    double radius = 50;
 
 public:
     Earth() : ptEarth(0.0, 0.0), angleEarth(0.0) {}
@@ -12,6 +13,7 @@ public:
     // Getters
     double getAngle() { return angleEarth; }
     Position getPosition() { return ptEarth; }
+    double getRadius() { return radius; }
 
     // Setters
     void setAngle(double angle) { angleEarth = angle; }

@@ -1,6 +1,9 @@
 #pragma once
 #include "../satellite.h"
-#include "../../debris/fragment/fragment.h"
+#include "../../debris/hubbleTelescope/hubbleTelescope.h"
+#include "../../debris/hubbleComputer/hubbleComputer.h"
+#include "../../debris/hubbleLeft/hubbleLeft.h"
+#include "../../debris/hubbleRight/hubbleRight.h"
 
 class Hubble : public Satellite {
 public:

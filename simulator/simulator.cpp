@@ -82,6 +82,14 @@ void Simulator::handleInput() {
  *******************************************************/
 bool Simulator::checkForCollisions() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
+        // Check for collision with Earth.
+        double distance = computeDistancePixels(*orbitingObjects[i]->getPosition(), earth.getPosition());
+        if (distance < earth.getRadius() + orbitingObjects[i]->getRadius()) {
+            orbitingObjects[i] = nullptr;
+            delete orbitingObjects[i];
+            orbitingObjects.erase(orbitingObjects.begin() + i);
+        }
+
         for (int j = i + 1; j < orbitingObjects.size(); j++) {
             double distance = computeDistancePixels(*orbitingObjects[i]->getPosition(), *orbitingObjects[j]->getPosition());
 
@@ -123,13 +131,23 @@ void Simulator::handleCollision(OrbitingObject *pObj1, int obj1index, OrbitingOb
     pObj1->smash(&orbitingObjects);
     pObj2->smash(&orbitingObjects);
 
-    pObj1 = nullptr;
-    delete pObj1;
-    orbitingObjects.erase(orbitingObjects.begin() + obj1index);
+    if (pObj1->getType() == "Dreamchaser") {
+        dreamChaser->setDead();
+        orbitingObjects.erase(orbitingObjects.begin() + obj1index);
+    } else {
+        pObj1 = nullptr;
+        delete pObj1;
+        orbitingObjects.erase(orbitingObjects.begin() + obj1index);
+    }
 
-    pObj2 = nullptr;
-    delete pObj2;
-    orbitingObjects.erase(orbitingObjects.begin() + obj2index - 1);
+    if (pObj2->getType() == "Dreamchaser") {
+        dreamChaser->setDead();
+        orbitingObjects.erase(orbitingObjects.begin() + obj2index - 1);
+    } else {
+        pObj2 = nullptr;
+        delete pObj2;
+        orbitingObjects.erase(orbitingObjects.begin() + obj2index - 1);
+    }
 }
 
 /*******************************************************

@@ -24,5 +24,6 @@ void Starlink::draw() {
  * @param orbitingObjects
  *******************************************************/
 void Starlink::smash(vector<OrbitingObject *> * orbitingObjects) {
-    // TODO: Implement this method
+    orbitingObjects->push_back(new StarlinkBody(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new StarlinkArray(position, dx, dy, aRadians));
 }

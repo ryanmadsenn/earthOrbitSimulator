@@ -1,5 +1,7 @@
 #pragma once
 #include "../satellite.h"
+#include "../../debris/starlinkBody/starlinkBody.h"
+#include "../../debris/starlinkArray/starlinkArray.h"
 
 class Starlink : public Satellite {
 public:

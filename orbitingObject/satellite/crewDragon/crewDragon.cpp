@@ -24,5 +24,9 @@ void CrewDragon::draw() {
  * @param orbitingObjects
  *******************************************************/
 void CrewDragon::smash(vector<OrbitingObject *> * orbitingObjects) {
-    // TODO: Implement this method
+    orbitingObjects->push_back(new CrewDragonCenter(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new CrewDragonLeft(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new CrewDragonRight(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
 }

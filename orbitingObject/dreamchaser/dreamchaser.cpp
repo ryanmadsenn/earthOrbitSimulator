@@ -18,7 +18,8 @@ DreamChaser::DreamChaser(Position position, double dx, double dy, double aRadian
  *
  ********************************************************/
 void DreamChaser::draw() {
-    drawShip(position, aRadians, isThrusting);
+    if (isAlive)
+        drawShip(position, aRadians, isThrusting);
 }
 
 void DreamChaser::rotate(bool right) {
@@ -26,15 +27,18 @@ void DreamChaser::rotate(bool right) {
 }
 
 void DreamChaser::thrust() {
-    isThrusting = true;
+    if (isAlive)
+        isThrusting = true;
 }
 
 void DreamChaser::shoot(vector<Projectile *> * projectiles) {
-    double totalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + 9000.0;
-    double projDX = totalVelocity * sin(aRadians);
-    double projDY = totalVelocity * cos(aRadians);
-    auto projectile = new Projectile(computeShipFront(), aRadians, projDX, projDY);
-    projectiles->push_back(projectile);
+    if (isAlive) {
+        double totalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + 9000.0;
+        double projDX = totalVelocity * sin(aRadians);
+        double projDY = totalVelocity * cos(aRadians);
+        auto projectile = new Projectile(computeShipFront(), aRadians, projDX, projDY);
+        projectiles->push_back(projectile);
+    }
 }
 
 Position DreamChaser::computeShipFront()

@@ -1,9 +1,9 @@
 #include "../debris.h"
 #include "../fragment/fragment.h"
 
-class GPSCenter : public Debris {
+class HubbleRight : public Debris {
 public:
-    GPSCenter(Position position, double dx, double dy, double aRadians);
+    HubbleRight(Position position, double dx, double dy, double aRadians);
 
     void draw() override;
 

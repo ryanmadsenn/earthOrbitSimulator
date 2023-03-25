@@ -5,7 +5,7 @@ class GPSLeft : public Debris {
 public:
     GPSLeft(Position position, double dx, double dy, double aRadians);
 
-    virtual void draw() override;
+    void draw() override;
 
-    virtual void smash(vector<OrbitingObject *> * orbitingObjects) override;
+    void smash(vector<OrbitingObject *> * orbitingObjects) override;
 };

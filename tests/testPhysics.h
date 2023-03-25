@@ -61,7 +61,7 @@ private:
 		// VERIFY
 		assert(STANDARD_GRAVITY == 9.80665);
 		assert(EARTH_RADIUS == 6378000);
-		assert(FRAME_RATE == 30);
+		assert(FRAME_RATE == 60);
 		assert(HOURS_PER_DAY == 24);
 		assert(MINUTES_PER_HOUR == 60);
 		assert(SECONDS_PER_MINUTE == 60);
@@ -91,10 +91,10 @@ private:
 		double timePerframe = computeTimePerFrame();
 
 		// VERIFY
-		assert(FRAME_RATE == 30);
+		assert(FRAME_RATE == 60);
 		assert(HOURS_PER_DAY == 24);
 		assert(MINUTES_PER_HOUR == 60);
-		assert(timePerframe == 48);
+		assert(timePerframe == 24);
 
 		// TEARDOWN
 	}
@@ -107,7 +107,7 @@ private:
 		double rotationSpeed = computeRotationSpeed();
 
 		// VERIFY
-		assert(FRAME_RATE == 30);
+		assert(FRAME_RATE == 60);
 		assert(HOURS_PER_DAY == 24);
 		assert(MINUTES_PER_HOUR == 60);
 //		assert(closeEnough(rotationSpeed, 0.00174533, 0.0001));

@@ -10,9 +10,9 @@ private:
 public:
     Fragment(Position position, double dx, double dy, double aRadians);
 
-    virtual void draw() override;
+    void draw() override;
 
-    virtual void smash(vector<OrbitingObject *> * orbitingObjects) override;
+    void smash(vector<OrbitingObject *> * orbitingObjects) override;
 
     int getAge() const {
         return age;

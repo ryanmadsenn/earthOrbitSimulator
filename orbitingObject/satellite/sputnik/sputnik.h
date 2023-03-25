@@ -1,5 +1,6 @@
 #pragma once
 #include "../satellite.h"
+#include "../../debris/fragment/fragment.h"
 
 class Sputnik : public Satellite {
 

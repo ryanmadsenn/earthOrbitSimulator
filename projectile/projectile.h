@@ -18,7 +18,7 @@ public:
 
     Projectile(Position ptProjectile, double angleProjectile, double dx, double dy);
 
-    double setPosition(Position pt) { ptProjectile = pt; };
+    void setPosition(Position pt) { ptProjectile = pt; };
 
     Position * getPosition() { return &ptProjectile; }
 

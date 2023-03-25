@@ -24,5 +24,8 @@ void Sputnik::draw() {
  * @param orbitingObjects
  *******************************************************/
 void Sputnik::smash(vector<OrbitingObject*> * orbitingObjects) {
-    // TODO: Implement this.
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
+    orbitingObjects->push_back(new Fragment(position, dx, dy, aRadians));
 }

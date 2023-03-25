@@ -1,7 +1,7 @@
 #pragma once
 #include "../orbitingObject.h"
 #include "../../projectile/projectile.h"
-#include "uiInteract/uiInteract.h"
+//#include "uiInteract/uiInteract.h"
 
 class DreamChaser : public OrbitingObject {
 private:

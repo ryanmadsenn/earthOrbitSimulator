@@ -90,7 +90,24 @@ bool Simulator::checkForCollisions() {
                 return true;
             }
         }
+
+        for (int k = 0; k < projectiles.size(); k++) {
+            double distance = computeDistancePixels(*orbitingObjects[i]->getPosition(), *projectiles[k]->getPosition());
+
+            if (distance < orbitingObjects[i]->getRadius() ){
+
+                orbitingObjects[i]->smash(&orbitingObjects);
+                orbitingObjects[i] = nullptr;
+                delete orbitingObjects[i];
+                orbitingObjects.erase(orbitingObjects.begin() + i);
+                return true;
+            }
+        }
+
+
     }
+
+
     return false;
 }
 

@@ -150,6 +150,11 @@
     <ClCompile Include="orbitingObject\satellite\satellite.cpp" />
     <ClCompile Include="orbitingObject\satellite\sputnik\sputnik.cpp" />
     <ClCompile Include="orbitingObject\satellite\starlink\starlink.cpp" />
+    <ClCompile Include="orbitingObject\debris\debris.cpp" />
+    <ClCompile Include="orbitingObject\debris\fragment\fragment.cpp" />
+    <ClCompile Include="orbitingObject\debris\gpsCenter\gpsCenter.cpp" />
+    <ClCompile Include="orbitingObject\debris\gpsLeft\gpsLeft.cpp" />
+    <ClCompile Include="orbitingObject\debris\gpsRight\gpsRight.cpp" /> 
     <ClCompile Include="physics\physics.cpp" />
     <ClCompile Include="position\position.cpp" />
     <ClCompile Include="projectile\projectile.cpp" />
@@ -172,6 +177,11 @@
     <ClInclude Include="orbitingObject\satellite\satellite.h" />
     <ClInclude Include="orbitingObject\satellite\sputnik\sputnik.h" />
     <ClInclude Include="orbitingObject\satellite\starlink\starlink.h" />
+    <ClInclude Include="orbitingObject\debris\debris.h" />
+    <ClInclude Include="orbitingObject\debris\fragment\fragment.h" />
+    <ClInclude Include="orbitingObject\debris\gpsCenter\gpsCenter.h" />
+    <ClInclude Include="orbitingObject\debris\gpsLeft\gpsLeft.h" />
+    <ClInclude Include="orbitingObject\debris\gpsRight\gpsRightt.h" />     
     <ClInclude Include="physics\physics.h" />
     <ClInclude Include="position\dummyPosition.h" />
     <ClInclude Include="position\position.h" />

@@ -1,6 +1,8 @@
 #pragma once
 
-#include "math.h"
+
+#define _USE_MATH_DEFINES // for windows
+#include <math.h> // for windows
 
 inline double degreesFromRadians(double radians)
 {

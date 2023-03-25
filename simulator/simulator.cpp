@@ -26,12 +26,12 @@ void Simulator::initialize()
     earth = Earth();
 
     // Create 6 GPS satellites.
-    orbitingObjects.push_back(new GPS(Position( 0.0,          26560000.0  ), -3880.0,  0.0,      0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position( 23001634.72,  13280000.0  ), -1940.0,  3360.18,  0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position( 23001634.72,  -13280000.0 ),  1940.0,  3360.18,  0.0, 12.0)); 
-    orbitingObjects.push_back(new GPS(Position( 0.0,          -26560000.0 ),  3880.0,  0.0,      0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position( -23001634.72, -13280000.0 ),  1940.0,  -3360.18, 0.0, 12.0));
-    orbitingObjects.push_back(new GPS(Position( -23001634.72, 13280000.0  ), -1940.0,  -3360.18, 0.0, 12.0));
+    orbitingObjects.push_back(new GPS(Position( 0.0,          26560000.0  ), -3880.0,  0.0,      M_PI / 2, 12.0));
+    orbitingObjects.push_back(new GPS(Position( 23001634.72,  13280000.0  ), -1940.0,  3360.18,  -M_2_PI, 12.0));
+    orbitingObjects.push_back(new GPS(Position( 23001634.72,  -13280000.0 ),  1940.0,  3360.18,  M_2_PI, 12.0));
+    orbitingObjects.push_back(new GPS(Position( 0.0,          -26560000.0 ),  3880.0,  0.0,      -M_PI / 2, 12.0));
+    orbitingObjects.push_back(new GPS(Position( -23001634.72, -13280000.0 ),  1940.0,  -3360.18, -M_2_PI, 12.0));
+    orbitingObjects.push_back(new GPS(Position( -23001634.72, 13280000.0  ), -1940.0,  -3360.18, M_2_PI, 12.0));
      
     // Create 5 other orbiting objects.
     orbitingObjects.push_back(new Sputnik      (Position(-36515095.13, 21082000.0),  2050.0,  2684.68, 0.0, 4.0));
@@ -202,6 +202,7 @@ void Simulator::updateObjects()
 
     for (int i = 0; i < orbitingObjects.size(); i++) {
         applyPhysics(orbitingObjects[i]);
+        orbitingObjects[i]->updateAngle(computeRotationSpeed() * 2);
 
         if (dynamic_cast<Fragment*>(orbitingObjects[i])) {
             Fragment *pFragment = dynamic_cast<Fragment*>(orbitingObjects[i]);

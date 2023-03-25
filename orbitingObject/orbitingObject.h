@@ -22,6 +22,7 @@ protected:
     Direction directionObject;
     bool dead = false;
     bool alive = true;
+    bool defunct = false;
 
 public:
     virtual ~OrbitingObject() = default;
@@ -42,6 +43,14 @@ public:
     void setDy(double dy);
     void setARadians(double aRadians);
     void setRadius(double radius);
+    virtual void updateAngle(double rotation) {
+        int num = random(0, 30000);
+        if (num < 10) {
+            defunct = true;
+        }
+
+        aRadians += defunct ? rotation * 20 : rotation;
+    }
     virtual void draw() = 0;
     virtual void smash(vector<OrbitingObject *> * orbitingObjects) = 0;
 

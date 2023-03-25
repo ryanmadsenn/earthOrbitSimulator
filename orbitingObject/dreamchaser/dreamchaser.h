@@ -17,6 +17,7 @@ public:
     bool getIsThrusting() const { return isThrusting; }
     bool setDead() { this->isAlive = false; }
     void rotate(bool right);
+    void updateAngle(double rotation) override { /* Do nothing */ };
     void shoot(vector<Projectile *> * projectiles);
     Position computeShipFront();
     void draw() override;

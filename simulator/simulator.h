@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Simulator : The main class for the simulator
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 
 #include "../orbitingObject/orbitingObject.h"

@@ -1,7 +1,7 @@
 #include "crewDragon.h"
 
 /*******************************************************
- *
+ * Description: Constructor for CrewDragon.
  * @param position
  * @param dx
  * @param dy
@@ -13,14 +13,14 @@ CrewDragon::CrewDragon(Position position, double dx, double dy, double aRadians,
 }
 
 /*******************************************************
- *
+ * Description: Draws the CrewDragon.
  *******************************************************/
 void CrewDragon::draw() {
     drawCrewDragon(position, aRadians);
 }
 
 /*******************************************************
- *
+ * Description: Breaks the CrewDragon into fragments.
  * @param orbitingObjects
  *******************************************************/
 void CrewDragon::smash(vector<OrbitingObject *> * orbitingObjects) {

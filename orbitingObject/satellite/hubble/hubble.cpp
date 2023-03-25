@@ -1,7 +1,7 @@
 #include "hubble.h"
 
 /*******************************************************
- *
+ * Description: Constructor for Hubble.
  * @param position
  * @param dx
  * @param dy
@@ -13,14 +13,14 @@ Hubble::Hubble(Position position, double dx, double dy, double aRadians, double 
 }
 
 /*******************************************************
- *
+ * Description: Draws the Hubble.
  *******************************************************/
 void Hubble::draw() {
     drawHubble(position, aRadians);
 }
 
 /*******************************************************
- *
+ * Description: Smashes the Hubble into its components.
  * @param orbitingObjects
  *******************************************************/
 void Hubble::smash(vector<OrbitingObject *> * orbitingObjects) {

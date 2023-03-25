@@ -1,7 +1,7 @@
 #include "starlink.h"
 
 /*******************************************************
- *
+ * Description: Constructor for Starlink.
  * @param position
  * @param dx
  * @param dy
@@ -13,14 +13,14 @@ Starlink::Starlink(Position position, double dx, double dy, double aRadians, dou
 }
 
 /*******************************************************
- *
+ * Description: Draws the Starlink.
  *******************************************************/
 void Starlink::draw() {
     drawStarlink(position, aRadians);
 }
 
 /*******************************************************
- *
+ * Description: Smashes the Starlink.
  * @param orbitingObjects
  *******************************************************/
 void Starlink::smash(vector<OrbitingObject *> * orbitingObjects) {

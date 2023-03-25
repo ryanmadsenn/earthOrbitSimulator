@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Sputnik : Class representing a Sputnik
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 #include "../satellite.h"
 #include "../../debris/fragment/fragment.h"

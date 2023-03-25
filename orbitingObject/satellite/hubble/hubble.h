@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Hubbard : Class representing a Hubble
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 #include "../satellite.h"
 #include "../../debris/hubbleTelescope/hubbleTelescope.h"

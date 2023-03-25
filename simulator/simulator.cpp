@@ -1,7 +1,7 @@
 #include "simulator.h"
 
 /*******************************************************
- *
+ * Description: Constructor.
  *******************************************************/
 Simulator::Simulator(const Position *ptUpperRight, const Interface *pUI) {
     this->ptUpperRight = ptUpperRight;
@@ -10,7 +10,7 @@ Simulator::Simulator(const Position *ptUpperRight, const Interface *pUI) {
 }
 
 /*******************************************************
- *
+ * Description: Inionialize the simulator.
  *******************************************************/
 void Simulator::initialize()
 {
@@ -43,7 +43,7 @@ void Simulator::initialize()
 };  
 
 /*******************************************************
- *
+ * Description: Update the simulator.
  *******************************************************/
 void Simulator::update() {
     handleInput();
@@ -53,7 +53,7 @@ void Simulator::update() {
 }
 
 /*******************************************************
- *
+ * Description: Handle input.
  * @param pUI
  *******************************************************/
 void Simulator::handleInput() {
@@ -77,8 +77,8 @@ void Simulator::handleInput() {
 }
 
 /*******************************************************
- *
- * @return
+ * Description: Check for collisions.
+ * @return true if there was a collision, false otherwise.
  *******************************************************/
 bool Simulator::checkForCollisions() {
     for (int i = 0; i < orbitingObjects.size(); i++) {
@@ -120,7 +120,7 @@ bool Simulator::checkForCollisions() {
 }
 
 /*******************************************************
- *
+ * Description: Handle a collision.
  * @param pObj1
  * @param obj1index
  * @param pObj2
@@ -151,7 +151,7 @@ void Simulator::handleCollision(OrbitingObject *pObj1, int obj1index, OrbitingOb
 }
 
 /*******************************************************
- *
+ * Description: Add an orbiting object to the simulator.
  * @param pObj
  *******************************************************/
 void Simulator::addOrbitingObject(OrbitingObject *pObj) {
@@ -159,7 +159,7 @@ void Simulator::addOrbitingObject(OrbitingObject *pObj) {
 }
 
 /*******************************************************
- *
+ * Description: Get the orbiting objects.
  * @return
  *******************************************************/
 vector<OrbitingObject*> Simulator::getOrbitingObjects()
@@ -168,14 +168,14 @@ vector<OrbitingObject*> Simulator::getOrbitingObjects()
 }
 
 /*******************************************************
- *
+ * Description: Clear the orbiting objects.
  *******************************************************/
 void Simulator::clearOrbitingObjects() {
     orbitingObjects.clear();
 }
 
 /*******************************************************
- *
+ * Description: Draw the simulator.
  *******************************************************/
 void Simulator::draw() {
     for (int i = 0; i < stars.size(); i++)
@@ -193,7 +193,7 @@ void Simulator::draw() {
 }
 
 /*******************************************************
- *
+ * Description: Update the objects.
  *******************************************************/
 void Simulator::updateObjects()
 {

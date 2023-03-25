@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Earth : Represents the earth
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 
 class Earth

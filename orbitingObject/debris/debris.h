@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Debris : The class representing the debris
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 #include "../orbitingObject.h"
 

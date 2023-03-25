@@ -1,5 +1,9 @@
-
-
+/*************************************************************
+ * Header File:
+ *    Physics: A file containing utility functions used in the game
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 
 #include "../orbitingObject/orbitingObject.h"

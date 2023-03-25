@@ -1,4 +1,9 @@
-#include "../debris.h"
+/*************************************************************
+ * Header File:
+ *    HubbleTelescope : Debris
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/#include "../debris.h"
 #include "../fragment/fragment.h"
 
 class HubbleTelescope : public Debris {

@@ -1,7 +1,7 @@
 #include "../orbitingObject/orbitingObject.h"
 
 /*******************************************************
- *
+ * Description: Constructor.
  ********************************************************/
 OrbitingObject::OrbitingObject() {};
 
@@ -15,55 +15,55 @@ void OrbitingObject::initialize(Position position, double dx, double dy, double 
 }
 
 /*******************************************************
- *
- * @return
+ * Description: returns the position of the object.
+ * @return Position
  ********************************************************/
 Position * OrbitingObject::getPosition() {
     return &position;
 }
 
 /*******************************************************
- *
- * @return
+ * Description: returns the x velocity of the object.
+ * @return double
  ********************************************************/
 double OrbitingObject::getDx() {
     return dx;
 }
 
 /*******************************************************
- *
- * @return
+ * Description: returns the y velocity of the object.
+ * @return double
  ********************************************************/
 double OrbitingObject::getDy() {
     return dy;
 }
 
 /*******************************************************
- *
- * @return
+ * Description: returns the angle of the object.
+ * @return double
  ********************************************************/
 double OrbitingObject::getARadians() {
     return aRadians;
 }
 
 /*******************************************************
- *
- * @return
+ * Description: returns the radius of the object.
+ * @return double
  ********************************************************/
 double OrbitingObject::getRadius() {
     return radius;
 }
 
 /*******************************************************
- *
- * @return
+ * Description: returns the type of the object.
+ * @return string
  ********************************************************/
 string OrbitingObject::getType() {
     return type;
 }
 
 /*******************************************************
- *
+ * Description: sets the position of the object.
  * @param dx
  *******************************************************/
 void OrbitingObject::setDx(double dx) {
@@ -71,7 +71,7 @@ void OrbitingObject::setDx(double dx) {
 }
 
 /*******************************************************
- *
+ * Description: sets the y velocity of the object.
  * @param dy
  ********************************************************/
 void OrbitingObject::setDy(double dy) {
@@ -79,7 +79,7 @@ void OrbitingObject::setDy(double dy) {
 }
 
 /*******************************************************
- *
+ * Description: sets the angle of the object.
  * @param aRadians
  ********************************************************/
 void OrbitingObject::setARadians(double aRadians) {
@@ -87,7 +87,7 @@ void OrbitingObject::setARadians(double aRadians) {
 }
 
 /*******************************************************
- *
+ * Description: sets the radius of the object.
  * @param radius
  ********************************************************/
 void OrbitingObject::setRadius(double radius) {

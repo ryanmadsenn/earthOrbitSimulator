@@ -1,7 +1,7 @@
 #include "gps.h"
 
 /*******************************************************
- *
+ * Description: Constructor for GPS.
  * @param position
  * @param dx
  * @param dy
@@ -13,14 +13,14 @@ GPS::GPS(Position position, double dx, double dy, double aRadians, double radius
 }
 
 /*******************************************************
- *
+ * Description: draws the GPS.
  ******************************************************/
 void GPS::draw() {
     drawGPS(position, aRadians);
 }
 
 /*******************************************************
- *
+ * Description: Smashes the GPS into fragments.
  * @param orbitingObjects
  *******************************************************/
 void GPS::smash(vector<OrbitingObject *> * orbitingObjects) {

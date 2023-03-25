@@ -1,6 +1,6 @@
 #include "dreamchaser.h"
 /*******************************************************
- *
+ * Description: Constructor for DreamChaser.
  * @param position
  * @param dx
  * @param dy
@@ -9,28 +9,36 @@
  ********************************************************/
 DreamChaser::DreamChaser(Position position, double dx, double dy, double aRadians, double radius) {
     initialize(position, dx, dy, aRadians, radius, "Dreamchaser");
-//    velocityObject.setVelocity(dx, dy);
-//    directionObject.setDirection(dx, dy);
     computeShipFront();
 }
 
 /*******************************************************
- *
+ * Description: Draws the DreamChaser.
  ********************************************************/
 void DreamChaser::draw() {
     if (isAlive)
         drawShip(position, aRadians, isThrusting);
 }
 
+/*******************************************************
+ * Description: Rotates the DreamChaser.
+ * @param right
+ ********************************************************/
 void DreamChaser::rotate(bool right) {
     right ? aRadians += 0.05 : aRadians -= 0.05;
 }
 
+/*******************************************************
+ * Description: Thrusts the DreamChaser.
+ ********************************************************/
 void DreamChaser::thrust() {
     if (isAlive)
         isThrusting = true;
 }
 
+/*******************************************************
+ * Description: Shoots other orbiting objects.
+ ********************************************************/
 void DreamChaser::shoot(vector<Projectile *> * projectiles) {
     if (isAlive) {
         double totalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + 9000.0;
@@ -41,6 +49,9 @@ void DreamChaser::shoot(vector<Projectile *> * projectiles) {
     }
 }
 
+/*******************************************************
+ * Description: computes the front of the DreamChaser.
+ ********************************************************/
 Position DreamChaser::computeShipFront()
 {
     // Because sine and cosine are expensive, we want to call them only once
@@ -58,7 +69,7 @@ Position DreamChaser::computeShipFront()
 }
 
 /*******************************************************
- *
+ * Description: breaks the DreamChaser into fragments.
  * @param orbitingObjects
  ********************************************************/
 void DreamChaser::smash(vector<OrbitingObject *> * orbitingObjects) {

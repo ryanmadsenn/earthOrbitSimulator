@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    GubbleRight : The class representing the right half of the Hubble Space Telescope
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #include "../debris.h"
 #include "../fragment/fragment.h"
 

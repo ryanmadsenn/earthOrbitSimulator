@@ -51,7 +51,7 @@ private:
         double difference = value - test;
         return (difference >= -tolerance) && (difference <= tolerance);
     }
-
+    /* Test the default variables */
 	void testDefaultVariables()
 	{
 		// SETUP

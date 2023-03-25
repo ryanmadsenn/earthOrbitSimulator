@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    StarlinkBody : Debris
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #include "../debris.h"
 #include "../fragment/fragment.h"
 

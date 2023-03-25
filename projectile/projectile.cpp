@@ -3,7 +3,7 @@
 //#include "physics/physics.h"
 
 /*******************************************************
- *
+ * Description: Constructor for the Projectile class.
  *******************************************************/
 Projectile::Projectile(Position ptProjectile, double angleProjectile, double dx, double dy)
 {

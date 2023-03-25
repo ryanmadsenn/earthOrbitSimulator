@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Fragment : Debris
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 #include "../debris.h"
 #include "../../../position/position.h"

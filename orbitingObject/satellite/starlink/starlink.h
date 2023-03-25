@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Starlink : Class representing a Starlink
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 #include "../satellite.h"
 #include "../../debris/starlinkBody/starlinkBody.h"

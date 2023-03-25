@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Star: Class for a star
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 
 #include "../uiDraw/uiDraw.h"

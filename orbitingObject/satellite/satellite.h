@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    Satellite: A class representing a satellite
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
 #include "../orbitingObject.h"
 

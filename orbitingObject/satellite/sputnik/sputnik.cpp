@@ -1,7 +1,7 @@
 #include "sputnik.h"
 
 /*******************************************************
- *
+ * Description: Constructor for Sputnik.
  * @param position
  * @param dx
  * @param dy
@@ -13,14 +13,14 @@ Sputnik::Sputnik(Position position, double dx, double dy, double aRadians, doubl
 }
 
 /*******************************************************
- *
+ * Description: Draws the Sputnik.
  *******************************************************/
 void Sputnik::draw() {
     drawSputnik(position, aRadians);
 }
 
 /*******************************************************
- *
+ * Description: Breaks the Sputnik into fragments.
  * @param orbitingObjects
  *******************************************************/
 void Sputnik::smash(vector<OrbitingObject*> * orbitingObjects) {

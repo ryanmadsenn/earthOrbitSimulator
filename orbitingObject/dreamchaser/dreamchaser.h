@@ -1,4 +1,11 @@
+/*************************************************************
+ * Header File:
+ *    DreamChaser : The class representing the DreamChaser
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma once
+
 #include "../orbitingObject.h"
 #include "../../projectile/projectile.h"
 //#include "uiInteract/uiInteract.h"

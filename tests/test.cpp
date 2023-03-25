@@ -2,7 +2,7 @@
  * Source File:
  *    Test : Test runner
  * Author:
- *    Br. Helfrich
+ *    Br. Helfrich, Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
  * Summary:
  *    The test runner for all the unit tests
  ************************************************************************/

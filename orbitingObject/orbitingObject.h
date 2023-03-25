@@ -1,3 +1,9 @@
+/*************************************************************
+ * Header File:
+ *    OrbitingObject: Base class for all objects in the game
+ * Author:
+ *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
+ *************************************************************/
 #pragma  once
 #include <iostream>
 #include <vector>

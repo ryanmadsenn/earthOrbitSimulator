@@ -3,6 +3,7 @@
 #pragma once
 
 #include "../orbitingObject/orbitingObject.h"
+#include "../orbitingObject/dreamchaser/dreamchaser.h"
 #include <cmath>
 
 #define _USE_MATH_DEFINES
@@ -154,6 +155,13 @@ inline void applyPhysics(OrbitingObject * obj)
     double direction = atan2(0 - satX, 0 - satY);
     double accX = accGravity * sin(direction);
     double accY = accGravity * cos(direction);
+
+    if (obj->getType() == "Dreamchaser") {
+        if (dynamic_cast<DreamChaser *>(obj)->getIsThrusting()) {
+            accX += 2.0 * sin(obj->getARadians());
+            accY += 2.0 * cos(obj->getARadians());
+        }
+    }
     
     double prevDX = obj->getDx();
     double prevDY = obj->getDy();

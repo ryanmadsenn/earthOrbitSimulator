@@ -22,7 +22,7 @@ class Simulator {
 protected:
     vector<Star> stars;
     Earth earth;
-    DreamChaser dreamChaser;
+    DreamChaser * dreamChaser;
     vector<OrbitingObject*> orbitingObjects;
     vector<Projectile> projectiles;
     Interface const *pUI;
@@ -37,7 +37,7 @@ public:
 
     void update();
 
-    void handleInput(const Interface *pUI);
+    void handleInput();
 
     virtual bool checkForCollisions();
 

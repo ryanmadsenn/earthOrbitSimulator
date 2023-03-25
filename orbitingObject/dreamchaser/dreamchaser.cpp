@@ -8,10 +8,10 @@
  * @param radius
  ********************************************************/
 DreamChaser::DreamChaser(Position position, double dx, double dy, double aRadians, double radius) {
-    initialize(position, dx, dy, aRadians, radius, "DreamChaser");
+    initialize(position, dx, dy, aRadians, radius, "Dreamchaser");
 //    velocityObject.setVelocity(dx, dy);
 //    directionObject.setDirection(dx, dy);
-    computeShipFront();
+//    computeShipFront();
 }
 
 /*******************************************************
@@ -21,32 +21,23 @@ void DreamChaser::draw() {
     drawShip(position, aRadians, isThrusting);
 }
 
-/*******************************************************
- *
- ********************************************************/
-void DreamChaser::computeShipFront()
-{
-    // because sine and cosine are expensive, we want to call them only once
-    double cosA = cos(aRadians);
-    double sinA = sin(aRadians);
-
-    // start with our original point
-    shipFront = Position(position);
-
-    // find the new values
-    shipFront.addPixelsX(0.0 * cosA + 19.0 * sinA);
-    shipFront.addPixelsY(19.0 * cosA - 0.0 * sinA);
+void DreamChaser::rotate(bool right) {
+    right ? aRadians += 0.05 : aRadians -= 0.05;
 }
 
-void DreamChaser::fireProjectile()
-{
-    // Velocity of the DreamChaser need to be added to the initial velocity of the projectile.
-    double initialVelocity = 9000.0;
-    double finalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + initialVelocity;
-
-    projectile.reset(getShipFront(), aRadians, finalVelocity);
-    projectile.draw();
+void DreamChaser::thrust() {
+    isThrusting = true;
 }
+
+//void DreamChaser::fireProjectile()
+//{
+//    // Velocity of the DreamChaser need to be added to the initial velocity of the projectile.
+//    double initialVelocity = 9000.0;
+//    double finalVelocity = sqrt(pow(dx, 2) + pow(dy, 2)) + initialVelocity;
+//
+//    projectile.reset(getShipFront(), aRadians, finalVelocity);
+//    projectile.draw();
+//}
 
 /*******************************************************
  *
@@ -54,19 +45,4 @@ void DreamChaser::fireProjectile()
  ********************************************************/
 void DreamChaser::smash(vector<OrbitingObject *> orbitingObjects) {
     // TODO: Implement this method.
-}
-
-void DreamChaser::input(const Interface* pUI)
-{
-    // get user input
-    directionObject.rotate(pUI->isRight() ? 0.1 : 0.0 + pUI->isLeft() ? -0.1 : 0.0);
-
-    if (pUI->isDown())
-    {
-        Acceleration acceleration(30, directionObject.getRadians());
-        velocityObject += acceleration;
-    }
-
-    if (pUI->isSpace())
-        fireProjectile();
 }

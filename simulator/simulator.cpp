@@ -38,14 +38,15 @@ void Simulator::initialize()
     orbitingObjects.push_back(new Hubble       (Position(0.0,          42164000.0),  3100.0,  0.0,     0.0, 10.0));
     orbitingObjects.push_back(new Starlink     (Position(0.0,         -13020000.0),  5800.0,  0.0,     0.0, 6.0));
     orbitingObjects.push_back(new CrewDragon   (Position(0.0,           8000000.0),  -7900.0, 0.0,     0.0, 7.0));
-    orbitingObjects.push_back(new DreamChaser  (Position(-45000000.0,  45000000.0),  0.0,     -2000,   0.0, 10.0));
+    dreamChaser = new DreamChaser(Position(-45000000.0,  45000000.0),  0.0,     -2000,   0.0, 10.0);
+    orbitingObjects.push_back(dreamChaser);
 };  
 
 /*******************************************************
  *
  *******************************************************/
 void Simulator::update() {
-//    handleInput(pUI);
+    handleInput();
     checkForCollisions();
     updateObjects();
 }
@@ -54,8 +55,19 @@ void Simulator::update() {
  *
  * @param pUI
  *******************************************************/
-void Simulator::handleInput(const Interface *pUI) {
-    dreamChaser.input(pUI);
+void Simulator::handleInput() {
+    if (pUI->isRight()) {
+        dreamChaser->rotate(true);
+    }
+    if (pUI->isLeft()) {
+        dreamChaser->rotate(false);
+    }
+
+    if (pUI->isDown()) {
+        dreamChaser->thrust();
+    } else {
+        dreamChaser->stopThrust();
+    }
 }
 
 /*******************************************************

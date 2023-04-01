@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="direction\direction.cpp" />
     <ClCompile Include="earth\earth.cpp" />
-    <ClCompile Include="Lab07.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="orbitingObject\dreamchaser\dreamchaser.cpp" />
     <ClCompile Include="orbitingObject\orbitingObject.cpp" />
     <ClCompile Include="orbitingObject\satellite\crewDragon\crewDragon.cpp" />
@@ -154,7 +154,16 @@
     <ClCompile Include="orbitingObject\debris\fragment\fragment.cpp" />
     <ClCompile Include="orbitingObject\debris\gpsCenter\gpsCenter.cpp" />
     <ClCompile Include="orbitingObject\debris\gpsLeft\gpsLeft.cpp" />
-    <ClCompile Include="orbitingObject\debris\gpsRight\gpsRight.cpp" /> 
+    <ClCompile Include="orbitingObject\debris\gpsRight\gpsRight.cpp" />
+    <ClCompile Include="orbitingObject\debris\crewDragonCenter\crewDragonCenter.cpp" />
+    <ClCompile Include="orbitingObject\debris\crewDragonLeft\crewDragonLeft.cpp" />
+    <ClCompile Include="orbitingObject\debris\crewDragonRight\crewDragonRight.cpp" />
+    <ClCompile Include="orbitingObject\debris\hubbleComputer\hubbleComputer.cpp" />
+    <ClCompile Include="orbitingObject\debris\hubbleLeft\hubbleLeft.cpp" />
+    <ClCompile Include="orbitingObject\debris\hubbleRight\hubbleRight.cpp" />
+    <ClCompile Include="orbitingObject\debris\hubbleTelescope\hubbleTelescope.cpp" />
+    <ClCompile Include="orbitingObject\debris\starlinkArray\starlinkArray.cpp" />
+    <ClCompile Include="orbitingObject\debris\starlinkBody\starlinkBody.cpp" />
     <ClCompile Include="physics\physics.cpp" />
     <ClCompile Include="position\position.cpp" />
     <ClCompile Include="projectile\projectile.cpp" />
@@ -181,7 +190,16 @@
     <ClInclude Include="orbitingObject\debris\fragment\fragment.h" />
     <ClInclude Include="orbitingObject\debris\gpsCenter\gpsCenter.h" />
     <ClInclude Include="orbitingObject\debris\gpsLeft\gpsLeft.h" />
-    <ClInclude Include="orbitingObject\debris\gpsRight\gpsRightt.h" />     
+    <ClInclude Include="orbitingObject\debris\gpsRight\gpsRightt.h" />
+    <ClInclude Include="orbitingObject\debris\crewDragonCenter\crewDragonCenter.h" />
+    <ClInclude Include="orbitingObject\debris\crewDragonLeft\crewDragonLeft.hh" />
+    <ClInclude Include="orbitingObject\debris\crewDragonRight\crewDragonRigh.h" />
+    <ClInclude Include="orbitingObject\debris\hubbleComputer\hubbleComputer.h" />
+    <ClInclude Include="orbitingObject\debris\hubbleLeft\hubbleLeft.h" />
+    <ClInclude Include="orbitingObject\debris\hubbleRight\hubbleRight.h" />
+    <ClInclude Include="orbitingObject\debris\hubbleTelescope\hubbleTelescope.h" />
+    <ClInclude Include="orbitingObject\debris\starlinkArray\starlinkArray.h" />
+    <ClInclude Include="orbitingObject\debris\starlinkBody\starlinkBody.h" />
     <ClInclude Include="physics\physics.h" />
     <ClInclude Include="position\dummyPosition.h" />
     <ClInclude Include="position\position.h" />

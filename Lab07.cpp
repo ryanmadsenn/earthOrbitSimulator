@@ -1,8 +1,8 @@
 /*************************************************************
  * 1. Name:
- *      Demo
+ *      Ryan Madsen, Erick Vega, and Bueze Nwokolo
  * 2. Assignment Name:
- *      Lab 07: Orbit simulator
+ *      Lab 13: Orbit Simulator Complete
  * 3. Assignment Description:
  *      Simulate satellites orbiting the earth
  * 4. What was the hardest part? Be as specific as possible.

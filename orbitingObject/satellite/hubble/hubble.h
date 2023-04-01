@@ -1,6 +1,6 @@
 /*************************************************************
  * Header File:
- *    Hubbard : Class representing a Hubble
+ *    Hubble : Class representing a Hubble
  * Author:
  *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
  *************************************************************/

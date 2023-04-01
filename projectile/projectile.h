@@ -1,10 +1,10 @@
-#pragma once
 /*************************************************************
  * Header File:
  *    Projectile : The class representing the projectile
  * Author:
  *    Vega Erick Penafiel, Madsen Ryan, and Bueze Nwokolo
  *************************************************************/
+#pragma once
 #include <vector>
 #include "../uiDraw/uiDraw.h"
 using namespace std;

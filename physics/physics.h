@@ -28,7 +28,7 @@ inline double computeSecPerDay()       { return HOURS_PER_DAY * MINUTES_PER_HOUR
 inline double computeRotationSpeed()   { return -(((2 * M_PI) / FRAME_RATE) * (computeTimeDilation() / computeSecPerDay())); }
 
 /*******************************************************
- *
+ * Compute Satellite Height
  * @param satX
  * @param satY
  * @return
@@ -53,7 +53,7 @@ inline double computeAltitude(Position& ptOrbitingObject)
 }
 
 /******************************************************
- *
+ * Get Gravity
  * @param satHeight
  * @return
  *****************************************************/
@@ -76,7 +76,7 @@ inline double getGravity(Position& ptOrbitingObject)
 }
 
 /******************************************************
- *
+ * Update Velocity
  * @param orbitingObject
  * @param acceleration
  * @param time
@@ -88,7 +88,7 @@ inline void updateVelocity(OrbitingObject& orbitingObject, double acceleration)
 }
 
 /******************************************************
- *
+ * Calculate DDX
  * @param accGravity
  * @param direction
  * @return
@@ -99,7 +99,7 @@ inline double calculateDDX(double accGravity, double direction)
 }
 
 /******************************************************
- *
+ * Calculate DDY
  * @param accGravity
  * @param direction
  * @return
@@ -110,7 +110,7 @@ inline double calculateDDY(double accGravity, double direction)
 }
 
 /*******************************************************
- *
+ * Compute Direction
  * @param ptX
  * @param ptY
  * @return
@@ -121,7 +121,7 @@ inline double computeDirection(double ptX, double ptY)
 }
 
 /*******************************************************
- *
+ * Calculate New Position
  * @param position
  * @param velocity
  * @param acceleration
@@ -133,7 +133,7 @@ inline double calculateNewPosition(double position, double velocity, double acce
 }
 
 /*******************************************************
- *
+ * Update Position
  * @param orbitingObject
  * @param velocity
  * @param acceleration
@@ -147,7 +147,7 @@ inline void updatePosition(OrbitingObject& orbitingObject, double velocity, doub
 }
 
 /*******************************************************
- *
+ * Apply Physics
  * @param obj
  *******************************************************/
 inline void applyPhysics(OrbitingObject * obj)
@@ -183,6 +183,10 @@ inline void applyPhysics(OrbitingObject * obj)
     obj->setPosition(Position(xBetween, yBetween));
 }
 
+/*******************************************************
+ * Apply Projectile Physics
+ * @param projetile
+ *******************************************************/
 inline void applyProjectilePhysics(Projectile * projectile) {
     double x = calculateNewPosition(projectile->getPosition()->getMetersX(), projectile->getDX(), 0);
     double y = calculateNewPosition(projectile->getPosition()->getMetersY(), projectile->getDY(), 0);

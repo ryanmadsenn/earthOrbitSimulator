@@ -1,4 +1,5 @@
 #include "dreamchaser.h"
+
 /*******************************************************
  * Description: Constructor for DreamChaser.
  * @param position
@@ -73,5 +74,5 @@ Position DreamChaser::computeShipFront()
  * @param orbitingObjects
  ********************************************************/
 void DreamChaser::smash(vector<OrbitingObject *> * orbitingObjects) {
-    // TODO: Implement this method.
+    // TODO: Implement this method if we want the Dream Chaser to brake
 }
